@@ -1,5 +1,5 @@
 <?
-abstract class RPCBaseModule extends IPSModule{
+abstract class uRpcBase extends IPSModule{
 	private $_io=null;
 	private $_boIsOnline=null;
 	

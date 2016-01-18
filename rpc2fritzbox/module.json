@@ -1,0 +1,11 @@
+{
+  "id": "{D94D9AF6-B06C-A41B-B52E-EF16C3225DB6}",
+  "name": "rpc2fritzbox",
+  "type": 3,
+  "vendor": "",
+  "aliases": ["rpc2fritzbox"],
+  "parentRequirements": [],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "rpc2fritzbox"
+}

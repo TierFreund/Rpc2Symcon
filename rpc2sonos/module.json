@@ -1,0 +1,11 @@
+{
+  "id": "{1817B0AB-6641-7BF1-55EF-8774B78356DC}",
+  "name": "rpc2sonos",
+  "type": 3,
+  "vendor": "",
+  "aliases": ["rpc2sonos"],
+  "parentRequirements": [],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "rpc2sonos"
+}

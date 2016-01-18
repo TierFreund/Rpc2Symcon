@@ -1,0 +1,14 @@
+{
+  "elements": [
+    {"type":"Label","label":"##### rpc2sonos_CONTROLLER v1.0 (Mon 11.01.2016 5:05:06) #####"},
+    {"type":"ValidationTextBox", "name": "Host","caption":"Hostname oder IP"},
+    {"type":"NumberSpinner","name":"Port","caption":"Port"},
+    {"type":"NumberSpinner","name":"Timeout","caption":"Timeout"},
+    {"type":"Select","name":"ConnectionType","caption":"Connection", "options": [
+      { "label": "Socks", "value": "socks" },
+      { "label": "Soap",  "value": "soap" },
+      { "label": "CURL", "value": "curl" }
+    ]},
+    { "type": "Label", "label": "Benutzername und Passwort (in den meisten fällen nicht erforderlich)" },
+    { "type": "ValidationTextBox", "name": "Username", "caption": "Username" },
+    { "type": "PasswordTextBox", "Password": "Pass", "caption": "Password" }

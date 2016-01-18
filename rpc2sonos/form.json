@@ -1,6 +1,6 @@
 {
   "elements": [
-    {"type":"Label","label":"##### rpc2sonos_CONTROLLER v1.0 (Mon 11.01.2016 5:05:06) #####"},
+    {"type":"Label","label":"##### rpc2sonos v1.2 (Mon 18.01.2016 6:06:11) #####"},
     {"type":"ValidationTextBox", "name": "Host","caption":"Hostname oder IP"},
     {"type":"NumberSpinner","name":"Port","caption":"Port"},
     {"type":"NumberSpinner","name":"Timeout","caption":"Timeout"},
@@ -11,4 +11,11 @@
     ]},
     { "type": "Label", "label": "Benutzername und Passwort (in den meisten fällen nicht erforderlich)" },
     { "type": "ValidationTextBox", "name": "Username", "caption": "Username" },
-    { "type": "PasswordTextBox", "Password": "Pass", "caption": "Password" }
+    { "type": "PasswordTextBox", "Password": "Pass", "caption": "Password" },
+    { "type": "Label", "label": "Intervall für die Aktualisierung aller Daten:" },
+    { "type": "IntervalBox", "name": "IntervallRefresh", "caption": "Sekunden" }
+  ],
+  "actions": [
+    { "type": "Button", "label": "-Testen-", "onClick": "rpc2sonos_Test();" }
+  ]
+}

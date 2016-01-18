@@ -1,6 +1,6 @@
 {
   "elements": [
-    {"type":"Label","label":"##### rpc2fritzbox v1.2 (Mon 18.01.2016 6:06:12) #####"},
+    {"type":"Label","label":"##### rpc2homematic v1.2 (Mon 18.01.2016 6:06:11) #####"},
     {"type":"ValidationTextBox", "name": "Host","caption":"Hostname oder IP"},
     {"type":"NumberSpinner","name":"Port","caption":"Port"},
     {"type":"NumberSpinner","name":"Timeout","caption":"Timeout"},
@@ -14,6 +14,6 @@
     { "type": "PasswordTextBox", "Password": "Pass", "caption": "Password" }
   ],
   "actions": [
-    { "type": "Button", "label": "-Testen-", "onClick": "rpc2fritzbox_Test();" }
+    { "type": "Button", "label": "-Testen-", "onClick": "rpc2homematic_Test();" }
   ]
 }

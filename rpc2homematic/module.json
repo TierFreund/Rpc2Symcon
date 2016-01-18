@@ -1,0 +1,11 @@
+{
+  "id": "{8967554C-B3C6-0D74-B5BC-4FE7FAF94476}",
+  "name": "rpc2homematic",
+  "type": 3,
+  "vendor": "",
+  "aliases": ["rpc2homematic"],
+  "parentRequirements": [],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "rpc2homematic"
+}

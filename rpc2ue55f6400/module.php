@@ -2,7 +2,7 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  |  Class           :rpc2ue55f6400 extends uRpcBase                               |
  |  Version         :2.2                                                          |
- |  BuildDate       :Tue 19.01.2016 00:01:29                                      |
+ |  BuildDate       :Tue 19.01.2016 00:23:57                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control Samsung TV DMR                        |
@@ -31,6 +31,8 @@ if (!DEFINED('RPC2UE55F6400_STATE_STOP')) {
 require_once( __DIR__ . '/../uRpcBase.class.php');
 require_once( __DIR__ . '/../uRpcIo.class.php');
 class rpc2ue55f6400 extends uRpcBase {
+  protected $_boRepeat=false;
+  protected $_boShuffle=false;
   /*--------------------------------------------------------------------------------+
    |  Funktion: GetServiceConnData                                                  |
    |  Erwartet:                                                                     |

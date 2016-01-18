@@ -74,20 +74,20 @@ class rpc2sonos extends uRpcBase {
   // Ident:string, Value:mixed
   public function RequestAction($Ident, $Value){
     switch($Ident) {
-      case 'Mute'    : $this->SetMute(\$Value); break;
-      case 'Volume'  : $this->SetVolume(\$Value); break;
-      case 'VolumeDB': $this->SetVolumeDB(\$Value); break;
-      case 'Bass'    : $this->SetBass(\$Value); break;
-      case 'Treble'  : $this->SetTreble(\$Value); break;
-      case 'EQ'      : $this->SetEQ(\$Value); break;
-      case 'Loudness': $this->SetLoudness(\$Value); break;
-      case 'OutputFixed': $this->SetOutputFixed(\$Value); break;
-      case 'CrossfadeMode': $this->SetCrossfadeMode(\$Value); break;
-      case 'State'   : $this->SetState(\$Value); break;
-      case 'Repeat'  : $this->SetRepeat(\$Value); break;
-      case 'Shuffle' : $this->SetShuffle(\$Value); break;
-      case 'GroupMute': $this->SetGroupMute(\$Value); break;
-      case 'GroupVolume': $this->SetGroupVolume(\$Value); break;
+      case 'Mute'    : $this->SetMute($Value); break;
+      case 'Volume'  : $this->SetVolume($Value); break;
+      case 'VolumeDB': $this->SetVolumeDB($Value); break;
+      case 'Bass'    : $this->SetBass($Value); break;
+      case 'Treble'  : $this->SetTreble($Value); break;
+      case 'EQ'      : $this->SetEQ($Value); break;
+      case 'Loudness': $this->SetLoudness($Value); break;
+      case 'OutputFixed': $this->SetOutputFixed($Value); break;
+      case 'CrossfadeMode': $this->SetCrossfadeMode($Value); break;
+      case 'State'   : $this->SetState($Value); break;
+      case 'Repeat'  : $this->SetRepeat($Value); break;
+      case 'Shuffle' : $this->SetShuffle($Value); break;
+      case 'GroupMute': $this->SetGroupMute($Value); break;
+      case 'GroupVolume': $this->SetGroupVolume($Value); break;
       default        : throw new Exception("Invalid Ident: $Ident");
     }
   }

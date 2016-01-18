@@ -2,7 +2,7 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  |  Class           :rpc2str_dn1050 extends uRpcBase                              |
  |  Version         :2.2                                                          |
- |  BuildDate       :Mon 18.01.2016 18:35:11                                      |
+ |  BuildDate       :Tue 19.01.2016 00:01:29                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control MULTI CHANNEL AV RECEIVER             |
@@ -73,7 +73,7 @@ class rpc2str_dn1050 extends uRpcBase {
     parent::ApplyChanges();
     $this->RegisterProfileBooleanEx('rpc2str_dn1050.OnOff','Information','','',Array(Array(false,'Aus','',-1),Array(true,'Ein','',-1)));
     $this->RegisterVariableBoolean('Mute','Mute','rpc2str_dn1050.OnOff');
-    $this->RegisterVariableBoolean('Volume','Volume','');
+    $this->RegisterVariableInteger('Volume','Volume','~Intensity.100');
     $this->RegisterProfileIntegerEx('rpc2str_dn1050.State','Status','','',array(Array(0,'Stop','', -1),Array(1,'Prev','', -1),Array(2,'Play','', -1),Array(3,'Pause','', -1),Array(4,'Next','', -1)));
     $this->RegisterVariableInteger('State','State','rpc2str_dn1050.State');
     $this->RegisterVariableBoolean('Repeat','Repeat','rpc2str_dn1050.OnOff');
@@ -349,7 +349,7 @@ class rpc2str_dn1050 extends uRpcBase {
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentVolume');
     $CurrentVolume=self::Call('RenderingControl','GetVolume',$args,$filter);;
-    $this->SetValueUi2('Volume',$CurrentVolume);
+    $this->SetValueInteger('Volume',$CurrentVolume);
     return $CurrentVolume;
   }
   /*--------------------------------------------------------------------------------+
@@ -574,7 +574,7 @@ class rpc2str_dn1050 extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     if(is_null('DesiredVolume'))$DesiredVolume=null;
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'DesiredVolume'=>$DesiredVolume);
-    $this->SetValueUi2('Volume',$DesiredVolume);
+    $this->SetValueInteger('Volume',$DesiredVolume);
     return self::Call('RenderingControl','SetVolume',$args,null);;
   }
   /*--------------------------------------------------------------------------------+

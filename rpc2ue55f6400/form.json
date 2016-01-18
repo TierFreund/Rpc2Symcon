@@ -1,6 +1,6 @@
 {
   "elements": [
-    {"type":"Label","label":"##### rpc2ue55f6400 v1.2 (Mon 18.01.2016 6:06:11) #####"},
+    {"type":"Label","label":"##### rpc2ue55f6400 v1.2 (Tue 19.01.2016 12:12:29) #####"},
     {"type":"ValidationTextBox", "name": "Host","caption":"Hostname oder IP"},
     {"type":"NumberSpinner","name":"Port","caption":"Port"},
     {"type":"NumberSpinner","name":"Timeout","caption":"Timeout"},

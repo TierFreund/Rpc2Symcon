@@ -2,7 +2,7 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  |  Class           :rpc2sonos extends uRpcBase                                   |
  |  Version         :2.2                                                          |
- |  BuildDate       :Mon 18.01.2016 18:35:11                                      |
+ |  BuildDate       :Tue 19.01.2016 00:01:30                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control Sonos PLAY:3                          |
@@ -65,11 +65,12 @@ class rpc2sonos extends uRpcBase {
     parent::ApplyChanges();
     $this->RegisterProfileBooleanEx('rpc2sonos.OnOff','Information','','',Array(Array(false,'Aus','',-1),Array(true,'Ein','',-1)));
     $this->RegisterVariableBoolean('Mute','Mute','rpc2sonos.OnOff');
-    $this->RegisterVariableBoolean('Volume','Volume','');
-    $this->RegisterVariableBoolean('VolumeDB','VolumeDB','');
-    $this->RegisterVariableBoolean('Bass','Bass','');
-    $this->RegisterVariableBoolean('Treble','Treble','');
-    $this->RegisterVariableBoolean('EQ','EQ','');
+    $this->RegisterVariableInteger('Volume','Volume','~Intensity.100');
+    $this->RegisterVariableInteger('VolumeDB','VolumeDB','');
+    $this->RegisterProfileInteger('rpc2sonos.10_10', '', '', '', -10, 10, 1);
+    $this->RegisterVariableInteger('Bass','Bass','rpc2sonos.10_10');
+    $this->RegisterVariableInteger('Treble','Treble','rpc2sonos.10_10');
+    $this->RegisterVariableInteger('EQ','EQ','');
     $this->RegisterVariableBoolean('Loudness','Loudness','rpc2sonos.OnOff');
     $this->RegisterVariableBoolean('OutputFixed','OutputFixed','rpc2sonos.OnOff');
     $this->RegisterVariableBoolean('CrossfadeMode','CrossfadeMode','rpc2sonos.OnOff');
@@ -78,7 +79,7 @@ class rpc2sonos extends uRpcBase {
     $this->RegisterVariableBoolean('Repeat','Repeat','rpc2sonos.OnOff');
     $this->RegisterVariableBoolean('Shuffle','Shuffle','rpc2sonos.OnOff');
     $this->RegisterVariableBoolean('GroupMute','GroupMute','rpc2sonos.OnOff');
-    $this->RegisterVariableBoolean('GroupVolume','GroupVolume','');
+    $this->RegisterVariableInteger('GroupVolume','GroupVolume','~Intensity.100');
     foreach(array('Mute','Volume','VolumeDB','Bass','Treble','EQ','Loudness','OutputFixed','CrossfadeMode','State','Repeat','Shuffle','GroupMute','GroupVolume') as $e)$this->EnableAction($e);
   }
 
@@ -548,7 +549,7 @@ class rpc2sonos extends uRpcBase {
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentBass');
     $CurrentBass=self::Call('RenderingControl','GetBass',$args,$filter);;
-    $this->SetValueI2('Bass',$CurrentBass);
+    $this->SetValueInteger('Bass',$CurrentBass);
     return $CurrentBass;
   }
 
@@ -617,7 +618,7 @@ class rpc2sonos extends uRpcBase {
     $args=array('InstanceID'=>$Instance,'EQType'=>$EQType);
     $filter=array('CurrentValue');
     $CurrentValue=self::Call('RenderingControl','GetEQ',$args,$filter);;
-    $this->SetValueI2('EQ',$CurrentValue);
+    $this->SetValueInteger('EQ',$CurrentValue);
     return $CurrentValue;
   }
 
@@ -643,7 +644,7 @@ class rpc2sonos extends uRpcBase {
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentVolume');
     $CurrentVolume=self::Call('GroupRenderingControl','GetGroupVolume',$args,$filter);;
-    $this->SetValueUi2('GroupVolume',$CurrentVolume);
+    $this->SetValueInteger('GroupVolume',$CurrentVolume);
     return $CurrentVolume;
   }
   // Instance:ui4
@@ -882,7 +883,7 @@ class rpc2sonos extends uRpcBase {
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentTreble');
     $CurrentTreble=self::Call('RenderingControl','GetTreble',$args,$filter);;
-    $this->SetValueI2('Treble',$CurrentTreble);
+    $this->SetValueInteger('Treble',$CurrentTreble);
     return $CurrentTreble;
   }
 
@@ -898,7 +899,7 @@ class rpc2sonos extends uRpcBase {
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentVolume');
     $CurrentVolume=self::Call('RenderingControl','GetVolume',$args,$filter);;
-    $this->SetValueUi2('Volume',$CurrentVolume);
+    $this->SetValueInteger('Volume',$CurrentVolume);
     return $CurrentVolume;
   }
   // Instance:ui4, Channel:string
@@ -908,7 +909,7 @@ class rpc2sonos extends uRpcBase {
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentVolume');
     $CurrentVolume=self::Call('RenderingControl','GetVolumeDB',$args,$filter);;
-    $this->SetValueI2('VolumeDB',$CurrentVolume);
+    $this->SetValueInteger('VolumeDB',$CurrentVolume);
     return $CurrentVolume;
   }
   // Instance:ui4, Channel:string
@@ -1383,7 +1384,7 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     if(is_null('DesiredBass'))$DesiredBass=null;
     $args=array('InstanceID'=>$Instance,'DesiredBass'=>$DesiredBass);
-    $this->SetValueI2('Bass',$DesiredBass);
+    $this->SetValueInteger('Bass',$DesiredBass);
     return self::Call('RenderingControl','SetBass',$args,null);;
   }
   // Browseable:boolean
@@ -1450,7 +1451,7 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     if(is_null('DesiredVolume'))$DesiredVolume=null;
     $args=array('InstanceID'=>$Instance,'DesiredVolume'=>$DesiredVolume);
-    $this->SetValueUi2('GroupVolume',$DesiredVolume);
+    $this->SetValueInteger('GroupVolume',$DesiredVolume);
     return self::Call('GroupRenderingControl','SetGroupVolume',$args,null);;
   }
   // DesiredLEDState:string
@@ -1598,7 +1599,7 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     if(is_null('DesiredTreble'))$DesiredTreble=null;
     $args=array('InstanceID'=>$Instance,'DesiredTreble'=>$DesiredTreble);
-    $this->SetValueI2('Treble',$DesiredTreble);
+    $this->SetValueInteger('Treble',$DesiredTreble);
     return self::Call('RenderingControl','SetTreble',$args,null);;
   }
   // UseVolume:boolean
@@ -1614,7 +1615,7 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     if(is_null('DesiredVolume'))$DesiredVolume=null;
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'DesiredVolume'=>$DesiredVolume);
-    $this->SetValueUi2('Volume',$DesiredVolume);
+    $this->SetValueInteger('Volume',$DesiredVolume);
     return self::Call('RenderingControl','SetVolume',$args,null);;
   }
   // DesiredVolume:i2, Instance:ui4, Channel:string
@@ -1623,7 +1624,7 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     if(is_null('DesiredVolume'))$DesiredVolume=null;
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'DesiredVolume'=>$DesiredVolume);
-    $this->SetValueI2('VolumeDB',$DesiredVolume);
+    $this->SetValueInteger('VolumeDB',$DesiredVolume);
     return self::Call('RenderingControl','SetVolumeDB',$args,null);;
   }
   // DesiredZoneName:string, DesiredIcon:string, DesiredConfiguration:string

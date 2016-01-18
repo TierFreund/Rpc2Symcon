@@ -2,7 +2,7 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  |  Class           :rpc2ue55f6400 extends uRpcBase                               |
  |  Version         :2.2                                                          |
- |  BuildDate       :Mon 18.01.2016 18:35:11                                      |
+ |  BuildDate       :Tue 19.01.2016 00:01:29                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control Samsung TV DMR                        |
@@ -74,10 +74,10 @@ class rpc2ue55f6400 extends uRpcBase {
     parent::ApplyChanges();
     $this->RegisterProfileBooleanEx('rpc2ue55f6400.OnOff','Information','','',Array(Array(false,'Aus','',-1),Array(true,'Ein','',-1)));
     $this->RegisterVariableBoolean('Mute','Mute','rpc2ue55f6400.OnOff');
-    $this->RegisterVariableBoolean('Volume','Volume','');
-    $this->RegisterVariableBoolean('Brightness','Brightness','');
-    $this->RegisterVariableBoolean('Contrast','Contrast','');
-    $this->RegisterVariableBoolean('Sharpness','Sharpness','');
+    $this->RegisterVariableInteger('Volume','Volume','~Intensity.100');
+    $this->RegisterVariableInteger('Brightness','Brightness','~Intensity.100');
+    $this->RegisterVariableInteger('Contrast','Contrast','~Intensity.100');
+    $this->RegisterVariableInteger('Sharpness','Sharpness','~Intensity.100');
     $this->RegisterProfileIntegerEx('rpc2ue55f6400.State','Status','','',array(Array(0,'Stop','', -1),Array(1,'Prev','', -1),Array(2,'Play','', -1),Array(3,'Pause','', -1),Array(4,'Next','', -1)));
     $this->RegisterVariableInteger('State','State','rpc2ue55f6400.State');
     $this->RegisterVariableBoolean('Repeat','Repeat','rpc2ue55f6400.OnOff');
@@ -449,7 +449,7 @@ class rpc2ue55f6400 extends uRpcBase {
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentBrightness');
     $CurrentBrightness=self::Call('RenderingControl','GetBrightness',$args,$filter);;
-    $this->SetValueUi2('Brightness',$CurrentBrightness);
+    $this->SetValueInteger('Brightness',$CurrentBrightness);
     return $CurrentBrightness;
   }
   /*--------------------------------------------------------------------------------+
@@ -502,7 +502,7 @@ class rpc2ue55f6400 extends uRpcBase {
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentContrast');
     $CurrentContrast=self::Call('RenderingControl','GetContrast',$args,$filter);;
-    $this->SetValueUi2('Contrast',$CurrentContrast);
+    $this->SetValueInteger('Contrast',$CurrentContrast);
     return $CurrentContrast;
   }
   /*--------------------------------------------------------------------------------+
@@ -955,7 +955,7 @@ class rpc2ue55f6400 extends uRpcBase {
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentSharpness');
     $CurrentSharpness=self::Call('RenderingControl','GetSharpness',$args,$filter);;
-    $this->SetValueUi2('Sharpness',$CurrentSharpness);
+    $this->SetValueInteger('Sharpness',$CurrentSharpness);
     return $CurrentSharpness;
   }
   /*--------------------------------------------------------------------------------+
@@ -1044,7 +1044,7 @@ class rpc2ue55f6400 extends uRpcBase {
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentVolume');
     $CurrentVolume=self::Call('RenderingControl','GetVolume',$args,$filter);;
-    $this->SetValueUi2('Volume',$CurrentVolume);
+    $this->SetValueInteger('Volume',$CurrentVolume);
     return $CurrentVolume;
   }
   /*--------------------------------------------------------------------------------+
@@ -1358,7 +1358,7 @@ class rpc2ue55f6400 extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     if(is_null('DesiredBrightness'))$DesiredBrightness=null;
     $args=array('InstanceID'=>$Instance,'DesiredBrightness'=>$DesiredBrightness);
-    $this->SetValueUi2('Brightness',$DesiredBrightness);
+    $this->SetValueInteger('Brightness',$DesiredBrightness);
     return self::Call('RenderingControl','SetBrightness',$args,null);;
   }
   /*--------------------------------------------------------------------------------+
@@ -1399,7 +1399,7 @@ class rpc2ue55f6400 extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     if(is_null('DesiredContrast'))$DesiredContrast=null;
     $args=array('InstanceID'=>$Instance,'DesiredContrast'=>$DesiredContrast);
-    $this->SetValueUi2('Contrast',$DesiredContrast);
+    $this->SetValueInteger('Contrast',$DesiredContrast);
     return self::Call('RenderingControl','SetContrast',$args,null);;
   }
   /*--------------------------------------------------------------------------------+
@@ -1590,7 +1590,7 @@ class rpc2ue55f6400 extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     if(is_null('DesiredSharpness'))$DesiredSharpness=null;
     $args=array('InstanceID'=>$Instance,'DesiredSharpness'=>$DesiredSharpness);
-    $this->SetValueUi2('Sharpness',$DesiredSharpness);
+    $this->SetValueInteger('Sharpness',$DesiredSharpness);
     return self::Call('RenderingControl','SetSharpness',$args,null);;
   }
   /*--------------------------------------------------------------------------------+
@@ -1639,7 +1639,7 @@ class rpc2ue55f6400 extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     if(is_null('DesiredVolume'))$DesiredVolume=null;
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'DesiredVolume'=>$DesiredVolume);
-    $this->SetValueUi2('Volume',$DesiredVolume);
+    $this->SetValueInteger('Volume',$DesiredVolume);
     return self::Call('RenderingControl','SetVolume',$args,null);;
   }
   /*--------------------------------------------------------------------------------+

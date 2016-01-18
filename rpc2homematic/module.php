@@ -2,7 +2,7 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  |  Class           :rpc2homematic extends uRpcBase                               |
  |  Version         :2.2                                                          |
- |  BuildDate       :Mon 18.01.2016 18:35:11                                      |
+ |  BuildDate       :Tue 19.01.2016 00:01:30                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control Homematic CCU2                        |

@@ -539,7 +539,7 @@ class rpc2sonos extends uRpcBase {
     $filter=array('CrossfadeMode');
     $CrossfadeMode=self::Call('AVTransport','GetCrossfadeMode',$args,$filter);
     $this->SetValueBoolean('CrossfadeMode',$CrossfadeMode);
-    return $CrossfadeMode
+    return $CrossfadeMode;
   }
 
   public function GetCurrentConnectionIDsConnectionManager(){

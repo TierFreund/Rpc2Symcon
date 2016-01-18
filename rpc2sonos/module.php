@@ -515,9 +515,9 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentBass');
-    $$CurrentBass=self::Call('RenderingControl','GetBass',$args,$filter);;
+    $CurrentBass=self::Call('RenderingControl','GetBass',$args,$filter);
     $this->SetValueI2('Bass',$CurrentBass);
-    return $CurrentBass
+    return $CurrentBass;
   }
 
   public function GetBrowseable(){
@@ -537,7 +537,7 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CrossfadeMode');
-    $$CrossfadeMode=self::Call('AVTransport','GetCrossfadeMode',$args,$filter);;
+    $CrossfadeMode=self::Call('AVTransport','GetCrossfadeMode',$args,$filter);
     $this->SetValueBoolean('CrossfadeMode',$CrossfadeMode);
     return $CrossfadeMode
   }
@@ -584,9 +584,9 @@ class rpc2sonos extends uRpcBase {
     if(is_null('EQType'))$EQType=null;
     $args=array('InstanceID'=>$Instance,'EQType'=>$EQType);
     $filter=array('CurrentValue');
-    $$CurrentValue=self::Call('RenderingControl','GetEQ',$args,$filter);;
+    $CurrentValue=self::Call('RenderingControl','GetEQ',$args,$filter);;
     $this->SetValueI2('EQ',$CurrentValue);
-    return $CurrentValue
+    return $CurrentValue;
   }
 
   public function GetFormat(){
@@ -600,9 +600,9 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentMute');
-    $$CurrentMute=self::Call('GroupRenderingControl','GetGroupMute',$args,$filter);;
+    $CurrentMute=self::Call('GroupRenderingControl','GetGroupMute',$args,$filter);;
     $this->SetValueBoolean('GroupMute',$CurrentMute);
-    return $CurrentMute
+    return $CurrentMute;
   }
   // Instance:ui4
   public function GetGroupVolume(integer $Instance){
@@ -610,9 +610,9 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentVolume');
-    $$CurrentVolume=self::Call('GroupRenderingControl','GetGroupVolume',$args,$filter);;
+    $CurrentVolume=self::Call('GroupRenderingControl','GetGroupVolume',$args,$filter);;
     $this->SetValueUi2('GroupVolume',$CurrentVolume);
-    return $CurrentVolume
+    return $CurrentVolume;
   }
   // Instance:ui4
   public function GetHeadphoneConnected(integer $Instance){
@@ -654,9 +654,9 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentLoudness');
-    $$CurrentLoudness=self::Call('RenderingControl','GetLoudness',$args,$filter);;
+    $CurrentLoudness=self::Call('RenderingControl','GetLoudness',$args,$filter);;
     $this->SetValueBoolean('Loudness',$CurrentLoudness);
-    return $CurrentLoudness
+    return $CurrentLoudness;
   }
   // Instance:ui4
   public function GetMediaInfo(integer $Instance){
@@ -672,9 +672,9 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentMute');
-    $$CurrentMute=self::Call('RenderingControl','GetMute',$args,$filter);;
+    $CurrentMute=self::Call('RenderingControl','GetMute',$args,$filter);;
     $this->SetValueBoolean('Mute',$CurrentMute);
-    return $CurrentMute
+    return $CurrentMute;
   }
   // Instance:ui4
   public function GetOutputFixed(integer $Instance){
@@ -682,9 +682,9 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentFixed');
-    $$CurrentFixed=self::Call('RenderingControl','GetOutputFixed',$args,$filter);;
+    $CurrentFixed=self::Call('RenderingControl','GetOutputFixed',$args,$filter);;
     $this->SetValueBoolean('OutputFixed',$CurrentFixed);
-    return $CurrentFixed
+    return $CurrentFixed;
   }
   // Instance:ui4
   public function GetPositionInfo(integer $Instance){
@@ -849,9 +849,9 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentTreble');
-    $$CurrentTreble=self::Call('RenderingControl','GetTreble',$args,$filter);;
+    $CurrentTreble=self::Call('RenderingControl','GetTreble',$args,$filter);;
     $this->SetValueI2('Treble',$CurrentTreble);
-    return $CurrentTreble
+    return $CurrentTreble;
   }
 
   public function GetUseAutoplayVolume(){
@@ -865,9 +865,9 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentVolume');
-    $$CurrentVolume=self::Call('RenderingControl','GetVolume',$args,$filter);;
+    $CurrentVolume=self::Call('RenderingControl','GetVolume',$args,$filter);;
     $this->SetValueUi2('Volume',$CurrentVolume);
-    return $CurrentVolume
+    return $CurrentVolume;
   }
   // Instance:ui4, Channel:string
   public function GetVolumeDB(integer $Instance,string $Channel){
@@ -875,9 +875,9 @@ class rpc2sonos extends uRpcBase {
     if(is_null('Instance'))$Instance=0;
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentVolume');
-    $$CurrentVolume=self::Call('RenderingControl','GetVolumeDB',$args,$filter);;
+    $CurrentVolume=self::Call('RenderingControl','GetVolumeDB',$args,$filter);;
     $this->SetValueI2('VolumeDB',$CurrentVolume);
-    return $CurrentVolume
+    return $CurrentVolume;
   }
   // Instance:ui4, Channel:string
   public function GetVolumeDBRange(integer $Instance,string $Channel){

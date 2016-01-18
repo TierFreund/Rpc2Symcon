@@ -21,7 +21,7 @@
 
 require_once( __DIR__ . '/../uRpcBase.class.php');
 require_once( __DIR__ . '/../uRpcIo.class.php');
-class rpc2fritzbox extends uRpcDevice {
+class rpc2fritzbox extends uRpcBase {
   // Name:string
   protected function GetServiceConnData($name){
     switch($name){

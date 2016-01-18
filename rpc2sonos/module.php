@@ -30,7 +30,7 @@ if (!DEFINED('RPC2SONOS_STATE_STOP')) {
 }
 require_once( __DIR__ . '/../uRpcBase.class.php');
 require_once( __DIR__ . '/../uRpcIo.class.php');
-class rpc2sonos extends uRpcDevice {
+class rpc2sonos extends uRpcBase {
   // Name:string
   protected function GetServiceConnData($name){
     switch($name){

@@ -1,0 +1,21 @@
+{
+  "elements": [
+    {"type":"Label","label":"##### rpc2ue55f6400 v1.2 (Mon 18.01.2016 6:06:11) #####"},
+    {"type":"ValidationTextBox", "name": "Host","caption":"Hostname oder IP"},
+    {"type":"NumberSpinner","name":"Port","caption":"Port"},
+    {"type":"NumberSpinner","name":"Timeout","caption":"Timeout"},
+    {"type":"Select","name":"ConnectionType","caption":"Connection", "options": [
+      { "label": "Socks", "value": "socks" },
+      { "label": "Soap",  "value": "soap" },
+      { "label": "CURL", "value": "curl" }
+    ]},
+    { "type": "Label", "label": "Benutzername und Passwort (in den meisten fällen nicht erforderlich)" },
+    { "type": "ValidationTextBox", "name": "Username", "caption": "Username" },
+    { "type": "PasswordTextBox", "Password": "Pass", "caption": "Password" },
+    { "type": "Label", "label": "Intervall für die Aktualisierung aller Daten:" },
+    { "type": "IntervalBox", "name": "IntervallRefresh", "caption": "Sekunden" }
+  ],
+  "actions": [
+    { "type": "Button", "label": "-Testen-", "onClick": "rpc2ue55f6400_Test();" }
+  ]
+}

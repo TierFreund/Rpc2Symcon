@@ -1,0 +1,11 @@
+{
+  "id": "{2626AC0C-128F-981C-5BF2-CC1C4063D87C}",
+  "name": "rpc2str_dn1050",
+  "type": 3,
+  "vendor": "",
+  "aliases": ["rpc2str_dn1050"],
+  "parentRequirements": [],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "rpc2str_dn1050"
+}

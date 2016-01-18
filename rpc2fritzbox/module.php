@@ -2,7 +2,7 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  |  Class           :rpc2fritzbox extends uRpcBase                                |
  |  Version         :2.2                                                          |
- |  BuildDate       :Tue 19.01.2016 00:01:30                                      |
+ |  BuildDate       :Tue 19.01.2016 00:30:28                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control FRITZ!Box Fon WLAN 7390               |

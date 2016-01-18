@@ -2,7 +2,7 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  |  Class           :rpc2sonos extends uRpcBase                                   |
  |  Version         :2.2                                                          |
- |  BuildDate       :Tue 19.01.2016 00:23:57                                      |
+ |  BuildDate       :Tue 19.01.2016 00:30:27                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control Sonos PLAY:3                          |

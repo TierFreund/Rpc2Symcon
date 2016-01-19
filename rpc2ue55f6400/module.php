@@ -2,7 +2,7 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  |  Class           :rpc2ue55f6400 extends uRpcBase                               |
  |  Version         :2.2                                                          |
- |  BuildDate       :Tue 19.01.2016 00:30:27                                      |
+ |  BuildDate       :Tue 19.01.2016 01:04:26                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control Samsung TV DMR                        |
@@ -148,8 +148,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function AddSchedule(string $ReservationType,string $RemindInfo){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('ReservationType'))$ReservationType=null;
-    if(is_null('RemindInfo'))$RemindInfo=null;
     $args=array('ReservationType'=>$ReservationType,'RemindInfo'=>$RemindInfo);
     $filter=array('Result','ConflictRemindInfo','ConflictRemindInfoURL');
     return self::Call('MainTVAgent2','AddSchedule',$args,$filter);;
@@ -167,8 +165,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function ChangeSchedule(string $ReservationType,string $RemindInfo){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('ReservationType'))$ReservationType=null;
-    if(is_null('RemindInfo'))$RemindInfo=null;
     $args=array('ReservationType'=>$ReservationType,'RemindInfo'=>$RemindInfo);
     $filter=array('Result','ConflictRemindInfo','ConflictRemindInfoURL');
     return self::Call('MainTVAgent2','ChangeSchedule',$args,$filter);;
@@ -183,7 +179,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function CheckPIN(string $PIN){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('PIN'))$PIN=null;
     $args=array('PIN'=>$PIN);
     $filter=array('Result');
     return self::Call('MainTVAgent2','CheckPIN',$args,$filter);;
@@ -197,7 +192,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function ConnectionComplete(integer $ConnectionID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('ConnectionID'))$ConnectionID=null;
     $args=array('ConnectionID'=>$ConnectionID);
     return self::Call('ConnectionManager','ConnectionComplete',$args,null);;
   }
@@ -212,8 +206,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function DeleteChannelList(integer $AntennaMode,string $ChannelList){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
-    if(is_null('ChannelList'))$ChannelList=null;
     $args=array('AntennaMode'=>$AntennaMode,'ChannelList'=>$ChannelList);
     $filter=array('Result');
     return self::Call('MainTVAgent2','DeleteChannelList',$args,$filter);;
@@ -230,9 +222,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function DeleteChannelListPIN(integer $AntennaMode,string $ChannelList,string $PIN){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
-    if(is_null('ChannelList'))$ChannelList=null;
-    if(is_null('PIN'))$PIN=null;
     $args=array('AntennaMode'=>$AntennaMode,'ChannelList'=>$ChannelList,'PIN'=>$PIN);
     $filter=array('Result');
     return self::Call('MainTVAgent2','DeleteChannelListPIN',$args,$filter);;
@@ -247,7 +236,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function DeleteRecordedItem(string $UID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('UID'))$UID=null;
     $args=array('UID'=>$UID);
     $filter=array('Result');
     return self::Call('MainTVAgent2','DeleteRecordedItem',$args,$filter);;
@@ -262,7 +250,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function DeleteSchedule(string $UID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('UID'))$UID=null;
     $args=array('UID'=>$UID);
     $filter=array('Result');
     return self::Call('MainTVAgent2','DeleteSchedule',$args,$filter);;
@@ -292,10 +279,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function EditChannelNumber(integer $AntennaMode,string $Source,string $Destination,string $ForcedFlag){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
-    if(is_null('Source'))$Source=null;
-    if(is_null('Destination'))$Destination=null;
-    if(is_null('ForcedFlag'))$ForcedFlag=null;
     $args=array('AntennaMode'=>$AntennaMode,'Source'=>$Source,'Destination'=>$Destination,'ForcedFlag'=>$ForcedFlag);
     $filter=array('Result');
     return self::Call('MainTVAgent2','EditChannelNumber',$args,$filter);;
@@ -311,8 +294,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function EditSourceName(string $SourceType,string $SourceNameType){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('SourceType'))$SourceType=null;
-    if(is_null('SourceNameType'))$SourceNameType=null;
     $args=array('SourceType'=>$SourceType,'SourceNameType'=>$SourceNameType);
     $filter=array('Result');
     return self::Call('MainTVAgent2','EditSourceName',$args,$filter);;
@@ -406,7 +387,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetAllProgramInformationURL(integer $AntennaMode,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
+    if(is_null($Channel))$Channel='Master';
     $args=array('AntennaMode'=>$AntennaMode,'Channel'=>$Channel);
     $filter=array('Result','AllProgramInformationURL');
     return self::Call('MainTVAgent2','GetAllProgramInformationURL',$args,$filter);;
@@ -447,7 +428,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetBrightness(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentBrightness');
     $CurrentBrightness=self::Call('RenderingControl','GetBrightness',$args,$filter);;
@@ -485,7 +466,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetChannelLockInformation(integer $AntennaMode,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
+    if(is_null($Channel))$Channel='Master';
     $args=array('Channel'=>$Channel,'AntennaMode'=>$AntennaMode);
     $filter=array('Result','Lock','StartTime','EndTime');
     return self::Call('MainTVAgent2','GetChannelLockInformation',$args,$filter);;
@@ -500,7 +481,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetContrast(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentContrast');
     $CurrentContrast=self::Call('RenderingControl','GetContrast',$args,$filter);;
@@ -561,7 +542,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetCurrentConnectionInfo(integer $ConnectionID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('ConnectionID'))$ConnectionID=null;
     $args=array('ConnectionID'=>$ConnectionID);
     $filter=array('RcsID','AVTransportID','ProtocolInfo','PeerConnectionManager','PeerConnectionID','Direction','Status');
     return self::Call('ConnectionManager','GetCurrentConnectionInfo',$args,$filter);;
@@ -642,7 +622,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetCurrentTransportActions(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('Actions');
     return self::Call('AVTransport','GetCurrentTransportActions',$args,$filter);;
@@ -672,7 +652,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetDetailChannelInformation(integer $AntennaMode,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
+    if(is_null($Channel))$Channel='Master';
     $args=array('Channel'=>$Channel,'AntennaMode'=>$AntennaMode);
     $filter=array('Result','DetailChannelInformation');
     return self::Call('MainTVAgent2','GetDetailChannelInformation',$args,$filter);;
@@ -690,8 +670,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetDetailProgramInformation(integer $AntennaMode,string $StartTime,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
-    if(is_null('StartTime'))$StartTime=null;
+    if(is_null($Channel))$Channel='Master';
     $args=array('AntennaMode'=>$AntennaMode,'Channel'=>$Channel,'StartTime'=>$StartTime);
     $filter=array('Result','DetailProgramInformation');
     return self::Call('MainTVAgent2','GetDetailProgramInformation',$args,$filter);;
@@ -708,7 +687,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetDeviceCapabilities(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('PlayMedia','RecMedia','RecQualityModes');
     return self::Call('AVTransport','GetDeviceCapabilities',$args,$filter);;
@@ -724,7 +703,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetFilteredProgarmURL(string $Keyword){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Keyword'))$Keyword=null;
     $args=array('Keyword'=>$Keyword);
     $filter=array('Result','FilteredProgramURL');
     return self::Call('MainTVAgent2','GetFilteredProgarmURL',$args,$filter);;
@@ -829,7 +807,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetMediaInfo(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('NrTracks','MediaDuration','CurrentURI','CurrentURIMetaData','NextURI','NextURIMetaData','PlayMedium','RecordMedium','WriteStatus');
     return self::Call('AVTransport','GetMediaInfo',$args,$filter);;
@@ -845,7 +823,8 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetMute(integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
+    if(is_null($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentMute');
     $CurrentMute=self::Call('RenderingControl','GetMute',$args,$filter);;
@@ -869,7 +848,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetPositionInfo(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('Track','TrackDuration','TrackMetaData','TrackURI','RelTime','AbsTime','RelCount','AbsCount');
     return self::Call('AVTransport','GetPositionInfo',$args,$filter);;
@@ -913,7 +892,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetRegionalVariantList(integer $AntennaMode,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
+    if(is_null($Channel))$Channel='Master';
     $args=array('AntennaMode'=>$AntennaMode,'Channel'=>$Channel);
     $filter=array('Result','RegionalVariantList');
     return self::Call('MainTVAgent2','GetRegionalVariantList',$args,$filter);;
@@ -953,7 +932,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetSharpness(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentSharpness');
     $CurrentSharpness=self::Call('RenderingControl','GetSharpness',$args,$filter);;
@@ -1010,7 +989,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetTransportInfo(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentTransportState','CurrentTransportStatus','CurrentSpeed');
     return self::Call('AVTransport','GetTransportInfo',$args,$filter);;
@@ -1026,7 +1005,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetTransportSettings(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('PlayMode','RecQualityMode');
     return self::Call('AVTransport','GetTransportSettings',$args,$filter);;
@@ -1042,7 +1021,8 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetVolume(integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
+    if(is_null($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentVolume');
     $CurrentVolume=self::Call('RenderingControl','GetVolume',$args,$filter);;
@@ -1059,7 +1039,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function ListPresets(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentPresetNameList');
     return self::Call('RenderingControl','ListPresets',$args,$filter);;
@@ -1077,8 +1057,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function ModifyChannelName(integer $AntennaMode,string $ChannelName,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
-    if(is_null('ChannelName'))$ChannelName=null;
+    if(is_null($Channel))$Channel='Master';
     $args=array('AntennaMode'=>$AntennaMode,'Channel'=>$Channel,'ChannelName'=>$ChannelName);
     $filter=array('Result','ReturnChannelName');
     return self::Call('MainTVAgent2','ModifyChannelName',$args,$filter);;
@@ -1094,8 +1073,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function ModifyFavoriteChannel(integer $AntennaMode,string $FavoriteChList){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
-    if(is_null('FavoriteChList'))$FavoriteChList=null;
     $args=array('AntennaMode'=>$AntennaMode,'FavoriteChList'=>$FavoriteChList);
     $filter=array('Result');
     return self::Call('MainTVAgent2','ModifyFavoriteChannel',$args,$filter);;
@@ -1109,7 +1086,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function Next(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','Next',$args,null);;
   }
@@ -1122,7 +1099,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function Pause(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','Pause',$args,null);;
   }
@@ -1136,7 +1113,8 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function Play(integer $Instance,integer $Speed){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
+    if(is_null($Speed))$Speed=1;
     $args=array('InstanceID'=>$Instance,'Speed'=>$Speed);
     return self::Call('AVTransport','Play',$args,null);;
   }
@@ -1150,7 +1128,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function PlayRecordedItem(integer $UID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('UID'))$UID=null;
     $args=array('UID'=>$UID);
     $filter=array('Result');
     return self::Call('MainTVAgent2','PlayRecordedItem',$args,$filter);;
@@ -1170,10 +1147,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function PrepareForConnection(string $RemoteProtocolInfo,string $PeerConnectionManager,integer $PeerConnectionID,string $Direction){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('RemoteProtocolInfo'))$RemoteProtocolInfo=null;
-    if(is_null('PeerConnectionManager'))$PeerConnectionManager=null;
-    if(is_null('PeerConnectionID'))$PeerConnectionID=null;
-    if(is_null('Direction'))$Direction=null;
     $args=array('RemoteProtocolInfo'=>$RemoteProtocolInfo,'PeerConnectionManager'=>$PeerConnectionManager,'PeerConnectionID'=>$PeerConnectionID,'Direction'=>$Direction);
     $filter=array('ConnectionID','AVTransportID','RcsID');
     return self::Call('ConnectionManager','PrepareForConnection',$args,$filter);;
@@ -1187,7 +1160,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function Previous(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','Previous',$args,null);;
   }
@@ -1201,7 +1174,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function RunBrowser(string $BrowserURL){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('BrowserURL'))$BrowserURL=null;
     $args=array('BrowserURL'=>$BrowserURL);
     $filter=array('Result');
     return self::Call('MainTVAgent2','RunBrowser',$args,$filter);;
@@ -1217,8 +1189,8 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function Seek(string $Target,integer $Instance,string $Unit){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
-    if(is_null('Target'))$Target=null;
+    if(is_null($Instance))$Instance=0;
+    if(is_null($Unit))$Unit='TRACK_NR';
     $args=array('InstanceID'=>$Instance,'Unit'=>$Unit,'Target'=>$Target);
     return self::Call('AVTransport','Seek',$args,null);;
   }
@@ -1232,7 +1204,8 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SelectPreset(integer $Instance,string $PresetName){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
+    if(is_null($PresetName))$PresetName='FactoryDefaults';
     $args=array('InstanceID'=>$Instance,'PresetName'=>$PresetName);
     return self::Call('RenderingControl','SelectPreset',$args,null);;
   }
@@ -1246,7 +1219,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SendBrowserCommand(string $BrowserCommand){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('BrowserCommand'))$BrowserCommand=null;
     $args=array('BrowserCommand'=>$BrowserCommand);
     $filter=array('Result');
     return self::Call('MainTVAgent2','SendBrowserCommand',$args,$filter);;
@@ -1261,8 +1233,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SendKeyCodeMultiScreenService(integer $KeyCode,string $KeyDescription){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('KeyCode'))$KeyCode=null;
-    if(is_null('KeyDescription'))$KeyDescription=null;
     $args=array('KeyCode'=>$KeyCode,'KeyDescription'=>$KeyDescription);
     return self::Call('MultiScreenService','SendKeyCodeMultiScreenService',$args,null);;
   }
@@ -1276,8 +1246,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SendKeyCodedial(integer $KeyCode,string $KeyDescription){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('KeyCode'))$KeyCode=null;
-    if(is_null('KeyDescription'))$KeyDescription=null;
     $args=array('KeyCode'=>$KeyCode,'KeyDescription'=>$KeyDescription);
     return self::Call('dial','SendKeyCodedial',$args,null);;
   }
@@ -1293,9 +1261,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SendMBRIRKey(integer $ActivityIndex,string $MBRDevice,string $MBRIRKey){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('ActivityIndex'))$ActivityIndex=null;
-    if(is_null('MBRDevice'))$MBRDevice=null;
-    if(is_null('MBRIRKey'))$MBRIRKey=null;
     $args=array('ActivityIndex'=>$ActivityIndex,'MBRDevice'=>$MBRDevice,'MBRIRKey'=>$MBRIRKey);
     $filter=array('Result');
     return self::Call('MainTVAgent2','SendMBRIRKey',$args,$filter);;
@@ -1310,7 +1275,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetAVOff(string $AVOff){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AVOff'))$AVOff=null;
     $args=array('AVOff'=>$AVOff);
     $filter=array('Result');
     return self::Call('MainTVAgent2','SetAVOff',$args,$filter);;
@@ -1326,9 +1290,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetAVTransportURI(string $CurrentURI,string $CurrentURIMetaData,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
-    if(is_null('CurrentURI'))$CurrentURI=null;
-    if(is_null('CurrentURIMetaData'))$CurrentURIMetaData=null;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'CurrentURI'=>$CurrentURI,'CurrentURIMetaData'=>$CurrentURIMetaData);
     return self::Call('AVTransport','SetAVTransportURI',$args,null);;
   }
@@ -1342,7 +1304,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetAntennaMode(integer $AntennaMode){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
     $args=array('AntennaMode'=>$AntennaMode);
     $filter=array('Result');
     return self::Call('MainTVAgent2','SetAntennaMode',$args,$filter);;
@@ -1357,8 +1318,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetBrightness(integer $DesiredBrightness,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
-    if(is_null('DesiredBrightness'))$DesiredBrightness=null;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'DesiredBrightness'=>$DesiredBrightness);
     $this->SetValueInteger('Brightness',$DesiredBrightness);
     return self::Call('RenderingControl','SetBrightness',$args,null);;
@@ -1378,12 +1338,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetChannelLock(integer $AntennaMode,string $ChannelList,string $Lock,string $PIN,integer $StartTime,integer $EndTime){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
-    if(is_null('ChannelList'))$ChannelList=null;
-    if(is_null('Lock'))$Lock=null;
-    if(is_null('PIN'))$PIN=null;
-    if(is_null('StartTime'))$StartTime=null;
-    if(is_null('EndTime'))$EndTime=null;
     $args=array('AntennaMode'=>$AntennaMode,'ChannelList'=>$ChannelList,'Lock'=>$Lock,'PIN'=>$PIN,'StartTime'=>$StartTime,'EndTime'=>$EndTime);
     $filter=array('Result');
     return self::Call('MainTVAgent2','SetChannelLock',$args,$filter);;
@@ -1398,8 +1352,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetContrast(integer $DesiredContrast,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
-    if(is_null('DesiredContrast'))$DesiredContrast=null;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'DesiredContrast'=>$DesiredContrast);
     $this->SetValueInteger('Contrast',$DesiredContrast);
     return self::Call('RenderingControl','SetContrast',$args,null);;
@@ -1414,7 +1367,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetHTSAllSpeakerDistance(string $AllSpeakerDistance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AllSpeakerDistance'))$AllSpeakerDistance=null;
     $args=array('AllSpeakerDistance'=>$AllSpeakerDistance);
     $filter=array('Result');
     return self::Call('MainTVAgent2','SetHTSAllSpeakerDistance',$args,$filter);;
@@ -1429,7 +1381,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetHTSAllSpeakerLevel(string $AllSpeakerLevel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AllSpeakerLevel'))$AllSpeakerLevel=null;
     $args=array('AllSpeakerLevel'=>$AllSpeakerLevel);
     $filter=array('Result');
     return self::Call('MainTVAgent2','SetHTSAllSpeakerLevel',$args,$filter);;
@@ -1444,7 +1395,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetHTSSoundEffect(string $SoundEffect){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('SoundEffect'))$SoundEffect=null;
     $args=array('SoundEffect'=>$SoundEffect);
     $filter=array('Result');
     return self::Call('MainTVAgent2','SetHTSSoundEffect',$args,$filter);;
@@ -1461,8 +1411,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetMainTVChannel(string $ChannelListType,integer $SatelliteID,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('ChannelListType'))$ChannelListType=null;
-    if(is_null('SatelliteID'))$SatelliteID=null;
+    if(is_null($Channel))$Channel='Master';
     $args=array('ChannelListType'=>$ChannelListType,'SatelliteID'=>$SatelliteID,'Channel'=>$Channel);
     $filter=array('Result');
     return self::Call('MainTVAgent2','SetMainTVChannel',$args,$filter);;
@@ -1479,9 +1428,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetMainTVSource(string $Source,integer $ID,integer $UiID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Source'))$Source=null;
-    if(is_null('ID'))$ID=null;
-    if(is_null('UiID'))$UiID=null;
     $args=array('Source'=>$Source,'ID'=>$ID,'UiID'=>$UiID);
     $filter=array('Result');
     return self::Call('MainTVAgent2','SetMainTVSource',$args,$filter);;
@@ -1497,8 +1443,8 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetMute(boolean $DesiredMute,integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
-    if(is_null('DesiredMute'))$DesiredMute=null;
+    if(is_null($Instance))$Instance=0;
+    if(is_null($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'DesiredMute'=>$DesiredMute);
     $this->SetValueBoolean('Mute',$DesiredMute);
     return self::Call('RenderingControl','SetMute',$args,null);;
@@ -1514,9 +1460,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetNextAVTransportURI(string $NextURI,string $NextURIMetaData,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
-    if(is_null('NextURI'))$NextURI=null;
-    if(is_null('NextURIMetaData'))$NextURIMetaData=null;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'NextURI'=>$NextURI,'NextURIMetaData'=>$NextURIMetaData);
     return self::Call('AVTransport','SetNextAVTransportURI',$args,null);;
   }
@@ -1530,7 +1474,8 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetPlayMode(integer $Instance,string $NewPlayMode){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
+    if(is_null($NewPlayMode))$NewPlayMode='NORMAL';
     $args=array('InstanceID'=>$Instance,'NewPlayMode'=>$NewPlayMode);
     return self::Call('AVTransport','SetPlayMode',$args,null);;
   }
@@ -1545,7 +1490,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetRecordDuration(integer $RecordDuration,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('RecordDuration'))$RecordDuration=null;
+    if(is_null($Channel))$Channel='Master';
     $args=array('Channel'=>$Channel,'RecordDuration'=>$RecordDuration);
     $filter=array('Result');
     return self::Call('MainTVAgent2','SetRecordDuration',$args,$filter);;
@@ -1562,7 +1507,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetRegionalVariant(integer $AntennaMode,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
+    if(is_null($Channel))$Channel='Master';
     $args=array('AntennaMode'=>$AntennaMode,'Channel'=>$Channel);
     $filter=array('Result','LogicalNumber');
     return self::Call('MainTVAgent2','SetRegionalVariant',$args,$filter);;
@@ -1589,8 +1534,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetSharpness(integer $DesiredSharpness,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
-    if(is_null('DesiredSharpness'))$DesiredSharpness=null;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'DesiredSharpness'=>$DesiredSharpness);
     $this->SetValueInteger('Sharpness',$DesiredSharpness);
     return self::Call('RenderingControl','SetSharpness',$args,null);;
@@ -1638,8 +1582,8 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetVolume(integer $DesiredVolume,integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
-    if(is_null('DesiredVolume'))$DesiredVolume=null;
+    if(is_null($Instance))$Instance=0;
+    if(is_null($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'DesiredVolume'=>$DesiredVolume);
     $this->SetValueInteger('Volume',$DesiredVolume);
     return self::Call('RenderingControl','SetVolume',$args,null);;
@@ -1656,8 +1600,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function StartCloneView(string $ForcedFlag,string $DRMType){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('ForcedFlag'))$ForcedFlag=null;
-    if(is_null('DRMType'))$DRMType=null;
     $args=array('ForcedFlag'=>$ForcedFlag,'DRMType'=>$DRMType);
     $filter=array('Result','CloneViewURL');
     return self::Call('MainTVAgent2','StartCloneView',$args,$filter);;
@@ -1676,10 +1618,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function StartExtSourceView(string $Source,integer $ID,string $ForcedFlag,string $DRMType){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Source'))$Source=null;
-    if(is_null('ID'))$ID=null;
-    if(is_null('ForcedFlag'))$ForcedFlag=null;
-    if(is_null('DRMType'))$DRMType=null;
     $args=array('Source'=>$Source,'ID'=>$ID,'ForcedFlag'=>$ForcedFlag,'DRMType'=>$DRMType);
     $filter=array('Result','ExtSourceViewURL');
     return self::Call('MainTVAgent2','StartExtSourceView',$args,$filter);;
@@ -1694,6 +1632,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function StartInstantRecording(string $Channel){
     if (!$this->GetOnlineState()) return null;
+    if(is_null($Channel))$Channel='Master';
     $args=array('Channel'=>$Channel);
     $filter=array('Result');
     return self::Call('MainTVAgent2','StartInstantRecording',$args,$filter);;
@@ -1714,11 +1653,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function StartSecondTVView(integer $AntennaMode,string $ChannelListType,integer $SatelliteID,string $ForcedFlag,string $DRMType,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('AntennaMode'))$AntennaMode=null;
-    if(is_null('ChannelListType'))$ChannelListType=null;
-    if(is_null('SatelliteID'))$SatelliteID=null;
-    if(is_null('ForcedFlag'))$ForcedFlag=null;
-    if(is_null('DRMType'))$DRMType=null;
+    if(is_null($Channel))$Channel='Master';
     $args=array('AntennaMode'=>$AntennaMode,'ChannelListType'=>$ChannelListType,'SatelliteID'=>$SatelliteID,'Channel'=>$Channel,'ForcedFlag'=>$ForcedFlag,'DRMType'=>$DRMType);
     $filter=array('Result','SecondTVURL');
     return self::Call('MainTVAgent2','StartSecondTVView',$args,$filter);;
@@ -1732,7 +1667,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function Stop(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','Stop',$args,null);;
   }
@@ -1758,6 +1693,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function StopRecord(string $Channel){
     if (!$this->GetOnlineState()) return null;
+    if(is_null($Channel))$Channel='Master';
     $args=array('Channel'=>$Channel);
     $filter=array('Result');
     return self::Call('MainTVAgent2','StopRecord',$args,$filter);;
@@ -1772,7 +1708,6 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function StopView(string $ViewURL){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('ViewURL'))$ViewURL=null;
     $args=array('ViewURL'=>$ViewURL);
     $filter=array('Result');
     return self::Call('MainTVAgent2','StopView',$args,$filter);;
@@ -1805,7 +1740,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function X_DLNA_GetBytePositionInfo(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('TrackSize','RelByte','AbsByte');
     return self::Call('AVTransport','X_DLNA_GetBytePositionInfo',$args,$filter);;
@@ -1821,7 +1756,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function X_GetAudioSelection(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('AudioPID','AudioEncoding');
     return self::Call('RenderingControl','X_GetAudioSelection',$args,$filter);;
@@ -1837,7 +1772,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function X_GetStoppedReason(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('StoppedReason','StoppedReasonData');
     return self::Call('AVTransport','X_GetStoppedReason',$args,$filter);;
@@ -1853,7 +1788,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function X_GetVideoSelection(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('VideoPID','VideoEncoding');
     return self::Call('RenderingControl','X_GetVideoSelection',$args,$filter);;
@@ -1868,8 +1803,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function X_SetAutoSlideShowMode(string $AutoSlideShowMode,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
-    if(is_null('AutoSlideShowMode'))$AutoSlideShowMode=null;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'AutoSlideShowMode'=>$AutoSlideShowMode);
     return self::Call('AVTransport','X_SetAutoSlideShowMode',$args,null);;
   }
@@ -1883,8 +1817,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function X_SetSlideShowEffectHint(string $SlideShowEffectHint,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
-    if(is_null('SlideShowEffectHint'))$SlideShowEffectHint=null;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'SlideShowEffectHint'=>$SlideShowEffectHint);
     return self::Call('AVTransport','X_SetSlideShowEffectHint',$args,null);;
   }
@@ -1899,9 +1832,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function X_UpdateAudioSelection(integer $AudioPID,string $AudioEncoding,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
-    if(is_null('AudioPID'))$AudioPID=null;
-    if(is_null('AudioEncoding'))$AudioEncoding=null;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'AudioPID'=>$AudioPID,'AudioEncoding'=>$AudioEncoding);
     return self::Call('RenderingControl','X_UpdateAudioSelection',$args,null);;
   }
@@ -1916,9 +1847,7 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function X_UpdateVideoSelection(integer $VideoPID,string $VideoEncoding,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('Instance'))$Instance=0;
-    if(is_null('VideoPID'))$VideoPID=null;
-    if(is_null('VideoEncoding'))$VideoEncoding=null;
+    if(is_null($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'VideoPID'=>$VideoPID,'VideoEncoding'=>$VideoEncoding);
     return self::Call('RenderingControl','X_UpdateVideoSelection',$args,null);;
   }

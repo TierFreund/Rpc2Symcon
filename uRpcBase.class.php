@@ -28,14 +28,14 @@ abstract class uRpcBase extends IPSModule{
 	protected function Call($service,$action,$arguments,$filter=null){
 		if(!$con=$this->GetServiceConnData($service)) 
 			throw new Exception ("Invalid Service Name '$service' :: $action");
-//echo "Service: $service\nAction: $action\nArgs: ".implode(',',$arguments)."\n";		
 		return $this->IO()->Call($url=$con[2],$service=$con[1],$action,$arguments,$filter,$ReturnValue=null,$Port=$con[0]);	
 	}	
 	protected abstract function GetServiceConnData($name);  // Override This in Own Modules
 	protected function GetOnlineState(){
 		if(!is_null($this->_boIsOnline))return $this->_boIsOnline;
 		if(!$host=$this->ReadPropertyString("Host"))throw new Exception ("No Hostname");
-		$this->_boIsOnline=!(@Sys_Ping(parse_url($host)['host'], 2000) == false);
+		if($test=@parse_url($host)['host'])$host=$test;
+		$this->_boIsOnline=Sys_Ping($host, 2000);
     	$this->SetValueBoolean('OnlineStateVAR',$this->_boIsOnline);
    		return $this->_boIsOnline; 
 	}

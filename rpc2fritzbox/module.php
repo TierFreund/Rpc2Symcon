@@ -2,7 +2,7 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  |  Class           :rpc2fritzbox extends uRpcBase                                |
  |  Version         :2.2                                                          |
- |  BuildDate       :Tue 19.01.2016 00:30:28                                      |
+ |  BuildDate       :Tue 19.01.2016 01:04:26                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control FRITZ!Box Fon WLAN 7390               |
@@ -70,22 +70,12 @@ class rpc2fritzbox extends uRpcBase {
   // NewType:string, NewDestIPAddress:string, NewDestSubnetMask:string, NewSourceIPAddress:string, NewSourceSubnetMask:string, NewGatewayIPAddress:string, NewInterface:string, NewForwardingMetric:i4
   public function AddForwardingEntry(string $NewType,string $NewDestIPAddress,string $NewDestSubnetMask,string $NewSourceIPAddress,string $NewSourceSubnetMask,string $NewGatewayIPAddress,string $NewInterface,integer $NewForwardingMetric){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewType'))$NewType=null;
-    if(is_null('NewDestIPAddress'))$NewDestIPAddress=null;
-    if(is_null('NewDestSubnetMask'))$NewDestSubnetMask=null;
-    if(is_null('NewSourceIPAddress'))$NewSourceIPAddress=null;
-    if(is_null('NewSourceSubnetMask'))$NewSourceSubnetMask=null;
-    if(is_null('NewGatewayIPAddress'))$NewGatewayIPAddress=null;
-    if(is_null('NewInterface'))$NewInterface=null;
-    if(is_null('NewForwardingMetric'))$NewForwardingMetric=null;
     $args=array('NewType'=>$NewType,'NewDestIPAddress'=>$NewDestIPAddress,'NewDestSubnetMask'=>$NewDestSubnetMask,'NewSourceIPAddress'=>$NewSourceIPAddress,'NewSourceSubnetMask'=>$NewSourceSubnetMask,'NewGatewayIPAddress'=>$NewGatewayIPAddress,'NewInterface'=>$NewInterface,'NewForwardingMetric'=>$NewForwardingMetric);
     return self::Call('Layer3Forwarding','AddForwardingEntry',$args,null);;
   }
   // NewPhonebookExtraID:string, NewPhonebookName:string
   public function AddPhonebook(string $NewPhonebookExtraID,string $NewPhonebookName){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewPhonebookExtraID'))$NewPhonebookExtraID=null;
-    if(is_null('NewPhonebookName'))$NewPhonebookName=null;
     $args=array('NewPhonebookExtraID'=>$NewPhonebookExtraID,'NewPhonebookName'=>$NewPhonebookName);
     return self::Call('X_AVM_DE_OnTel','AddPhonebook',$args,null);;
   }
@@ -98,55 +88,42 @@ class rpc2fritzbox extends uRpcBase {
   // NewSessionID:string
   public function ConfigurationStarted(string $NewSessionID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewSessionID'))$NewSessionID=null;
     $args=array('NewSessionID'=>$NewSessionID);
     return self::Call('DeviceConfig','ConfigurationStarted',$args,null);;
   }
   // NewIndex:ui2
   public function DeleteByIndex(integer $NewIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIndex'))$NewIndex=null;
     $args=array('NewIndex'=>$NewIndex);
     return self::Call('X_AVM_DE_OnTel','DeleteByIndex',$args,null);;
   }
   // NewDestIPAddress:string, NewDestSubnetMask:string, NewSourceIPAddress:string, NewSourceSubnetMask:string
   public function DeleteForwardingEntry(string $NewDestIPAddress,string $NewDestSubnetMask,string $NewSourceIPAddress,string $NewSourceSubnetMask){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewDestIPAddress'))$NewDestIPAddress=null;
-    if(is_null('NewDestSubnetMask'))$NewDestSubnetMask=null;
-    if(is_null('NewSourceIPAddress'))$NewSourceIPAddress=null;
-    if(is_null('NewSourceSubnetMask'))$NewSourceSubnetMask=null;
     $args=array('NewDestIPAddress'=>$NewDestIPAddress,'NewDestSubnetMask'=>$NewDestSubnetMask,'NewSourceIPAddress'=>$NewSourceIPAddress,'NewSourceSubnetMask'=>$NewSourceSubnetMask);
     return self::Call('Layer3Forwarding','DeleteForwardingEntry',$args,null);;
   }
   // NewIndex:ui2, NewMessageIndex:ui2
   public function DeleteMessage(integer $NewIndex,integer $NewMessageIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIndex'))$NewIndex=null;
-    if(is_null('NewMessageIndex'))$NewMessageIndex=null;
     $args=array('NewIndex'=>$NewIndex,'NewMessageIndex'=>$NewMessageIndex);
     return self::Call('X_AVM_DE_TAM','DeleteMessage',$args,null);;
   }
   // NewPhonebookID:ui2, NewPhonebookExtraID:string
   public function DeletePhonebook(integer $NewPhonebookID,string $NewPhonebookExtraID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewPhonebookID'))$NewPhonebookID=null;
-    if(is_null('NewPhonebookExtraID'))$NewPhonebookExtraID=null;
     $args=array('NewPhonebookID'=>$NewPhonebookID,'NewPhonebookExtraID'=>$NewPhonebookExtraID);
     return self::Call('X_AVM_DE_OnTel','DeletePhonebook',$args,null);;
   }
   // NewPhonebookID:ui2, NewPhonebookEntryID:ui4
   public function DeletePhonebookEntry(integer $NewPhonebookID,integer $NewPhonebookEntryID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewPhonebookID'))$NewPhonebookID=null;
-    if(is_null('NewPhonebookEntryID'))$NewPhonebookEntryID=null;
     $args=array('NewPhonebookID'=>$NewPhonebookID,'NewPhonebookEntryID'=>$NewPhonebookEntryID);
     return self::Call('X_AVM_DE_OnTel','DeletePhonebookEntry',$args,null);;
   }
   // NewIndex:ui4
   public function DeleteServiceByIndex(integer $NewIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIndex'))$NewIndex=null;
     $args=array('NewIndex'=>$NewIndex);
     return self::Call('X_AVM_DE_MyFritz','DeleteServiceByIndex',$args,null);;
   }
@@ -218,7 +195,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewDectID:ui2
   public function GetDECTHandsetInfo(integer $NewDectID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewDectID'))$NewDectID=null;
     $args=array('NewDectID'=>$NewDectID);
     $filter=array('NewHandsetName','NewPhonebookID');
     return self::Call('X_AVM_DE_OnTel','GetDECTHandsetInfo',$args,$filter);;
@@ -268,7 +244,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewAssociatedDeviceIndex:ui2
   public function GetGenericAssociatedDeviceInfo(integer $NewAssociatedDeviceIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewAssociatedDeviceIndex'))$NewAssociatedDeviceIndex=null;
     $args=array('NewAssociatedDeviceIndex'=>$NewAssociatedDeviceIndex);
     $filter=array('NewAssociatedDeviceMACAddress','NewAssociatedDeviceIPAddress','NewAssociatedDeviceAuthState','NewX_AVM-DE_Speed','NewX_AVM-DE_SignalStrength');
     return self::Call('WLANConfiguration','GetGenericAssociatedDeviceInfo',$args,$filter);;
@@ -276,7 +251,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewForwardingIndex:ui2
   public function GetGenericForwardingEntry(integer $NewForwardingIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewForwardingIndex'))$NewForwardingIndex=null;
     $args=array('NewForwardingIndex'=>$NewForwardingIndex);
     $filter=array('NewEnable','NewStatus','NewType','NewDestIPAddress','NewDestSubnetMask','NewSourceIPAddress','NewSourceSubnetMask','NewGatewayIPAddress','NewInterface','NewForwardingMetric');
     return self::Call('Layer3Forwarding','GetGenericForwardingEntry',$args,$filter);;
@@ -284,7 +258,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewIndex:ui2
   public function GetGenericHostEntry(integer $NewIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIndex'))$NewIndex=null;
     $args=array('NewIndex'=>$NewIndex);
     $filter=array('NewIPAddress','NewAddressSource','NewLeaseTimeRemaining','NewMACAddress','NewInterfaceType','NewActive','NewHostName');
     return self::Call('Hosts','GetGenericHostEntry',$args,$filter);;
@@ -316,7 +289,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewIndex:ui2
   public function GetInfoByIndex(integer $NewIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIndex'))$NewIndex=null;
     $args=array('NewIndex'=>$NewIndex);
     $filter=array('NewEnable','NewStatus','NewLastConnect','NewUrl','NewServiceId','NewUsername','NewName');
     return self::Call('X_AVM_DE_OnTel','GetInfoByIndex',$args,$filter);;
@@ -336,7 +308,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewIndex:ui2
   public function GetMessageList(integer $NewIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIndex'))$NewIndex=null;
     $args=array('NewIndex'=>$NewIndex);
     $filter=array('NewURL');
     return self::Call('X_AVM_DE_TAM','GetMessageList',$args,$filter);;
@@ -368,7 +339,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewPhonebookID:ui2
   public function GetPhonebook(integer $NewPhonebookID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewPhonebookID'))$NewPhonebookID=null;
     $args=array('NewPhonebookID'=>$NewPhonebookID);
     $filter=array('NewPhonebookName','NewPhonebookExtraID','NewPhonebookURL');
     return self::Call('X_AVM_DE_OnTel','GetPhonebook',$args,$filter);;
@@ -376,8 +346,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewPhonebookID:ui2, NewPhonebookEntryID:ui4
   public function GetPhonebookEntry(integer $NewPhonebookID,integer $NewPhonebookEntryID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewPhonebookID'))$NewPhonebookID=null;
-    if(is_null('NewPhonebookEntryID'))$NewPhonebookEntryID=null;
     $args=array('NewPhonebookID'=>$NewPhonebookID,'NewPhonebookEntryID'=>$NewPhonebookEntryID);
     $filter=array('NewPhonebookEntryData');
     return self::Call('X_AVM_DE_OnTel','GetPhonebookEntry',$args,$filter);;
@@ -409,7 +377,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewIndex:ui4
   public function GetServiceByIndex(integer $NewIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIndex'))$NewIndex=null;
     $args=array('NewIndex'=>$NewIndex);
     $filter=array('NewEnabled','NewName','NewScheme','NewPort','NewURLPath','NewType','NewIPv4ForwardingWarning','NewIPv4Addresses','NewIPv6Addresses','NewIPv6InterfaceIDs','NewMACAddress','NewHostName','NewDynDnsLabel','NewStatus');
     return self::Call('X_AVM_DE_MyFritz','GetServiceByIndex',$args,$filter);;
@@ -417,7 +384,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewAssociatedDeviceMACAddress:string
   public function GetSpecificAssociatedDeviceInfo(string $NewAssociatedDeviceMACAddress){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewAssociatedDeviceMACAddress'))$NewAssociatedDeviceMACAddress=null;
     $args=array('NewAssociatedDeviceMACAddress'=>$NewAssociatedDeviceMACAddress);
     $filter=array('NewAssociatedDeviceIPAddress','NewAssociatedDeviceAuthState','NewX_AVM-DE_Speed','NewX_AVM-DE_SignalStrength');
     return self::Call('WLANConfiguration','GetSpecificAssociatedDeviceInfo',$args,$filter);;
@@ -425,10 +391,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewDestIPAddress:string, NewDestSubnetMask:string, NewSourceIPAddress:string, NewSourceSubnetMask:string
   public function GetSpecificForwardingEntry(string $NewDestIPAddress,string $NewDestSubnetMask,string $NewSourceIPAddress,string $NewSourceSubnetMask){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewDestIPAddress'))$NewDestIPAddress=null;
-    if(is_null('NewDestSubnetMask'))$NewDestSubnetMask=null;
-    if(is_null('NewSourceIPAddress'))$NewSourceIPAddress=null;
-    if(is_null('NewSourceSubnetMask'))$NewSourceSubnetMask=null;
     $args=array('NewDestIPAddress'=>$NewDestIPAddress,'NewDestSubnetMask'=>$NewDestSubnetMask,'NewSourceIPAddress'=>$NewSourceIPAddress,'NewSourceSubnetMask'=>$NewSourceSubnetMask);
     $filter=array('NewGatewayIPAddress','NewEnable','NewStatus','NewType','NewInterface','NewForwardingMetric');
     return self::Call('Layer3Forwarding','GetSpecificForwardingEntry',$args,$filter);;
@@ -436,7 +398,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewMACAddress:string
   public function GetSpecificHostEntry(string $NewMACAddress){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewMACAddress'))$NewMACAddress=null;
     $args=array('NewMACAddress'=>$NewMACAddress);
     $filter=array('NewIPAddress','NewAddressSource','NewLeaseTimeRemaining','NewInterfaceType','NewActive','NewHostName');
     return self::Call('Hosts','GetSpecificHostEntry',$args,$filter);;
@@ -510,7 +471,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewVoIPAccountIndex:ui2
   public function GetVoIPEnableAreaCode(integer $NewVoIPAccountIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewVoIPAccountIndex'))$NewVoIPAccountIndex=null;
     $args=array('NewVoIPAccountIndex'=>$NewVoIPAccountIndex);
     $filter=array('NewVoIPEnableAreaCode');
     return self::Call('X_VoIP','GetVoIPEnableAreaCode',$args,$filter);;
@@ -518,7 +478,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewVoIPAccountIndex:ui2
   public function GetVoIPEnableCountryCode(integer $NewVoIPAccountIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewVoIPAccountIndex'))$NewVoIPAccountIndex=null;
     $args=array('NewVoIPAccountIndex'=>$NewVoIPAccountIndex);
     $filter=array('NewVoIPEnableCountryCode');
     return self::Call('X_VoIP','GetVoIPEnableCountryCode',$args,$filter);;
@@ -526,8 +485,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewIndex:ui2, NewMessageIndex:ui2
   public function MarkMessage(integer $NewIndex,integer $NewMessageIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIndex'))$NewIndex=null;
-    if(is_null('NewMessageIndex'))$NewMessageIndex=null;
     $args=array('NewIndex'=>$NewIndex,'NewMessageIndex'=>$NewMessageIndex);
     return self::Call('X_AVM_DE_TAM','MarkMessage',$args,null);;
   }
@@ -539,350 +496,246 @@ class rpc2fritzbox extends uRpcBase {
   // NewMinAddress:string, NewMaxAddress:string
   public function SetAddressRange(string $NewMinAddress,string $NewMaxAddress){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewMinAddress'))$NewMinAddress=null;
-    if(is_null('NewMaxAddress'))$NewMaxAddress=null;
     $args=array('NewMinAddress'=>$NewMinAddress,'NewMaxAddress'=>$NewMaxAddress);
     return self::Call('LANHostConfigManagement','SetAddressRange',$args,null);;
   }
   // NewBasicEncryptionModes:string, NewBasicAuthenticationMode:string
   public function SetBasBeaconSecurityProperties(string $NewBasicEncryptionModes,string $NewBasicAuthenticationMode){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewBasicEncryptionModes'))$NewBasicEncryptionModes=null;
-    if(is_null('NewBasicAuthenticationMode'))$NewBasicAuthenticationMode=null;
     $args=array('NewBasicEncryptionModes'=>$NewBasicEncryptionModes,'NewBasicAuthenticationMode'=>$NewBasicAuthenticationMode);
     return self::Call('WLANConfiguration','SetBasBeaconSecurityProperties',$args,null);;
   }
   // NewBeaconAdvertisementEnabled:boolean
   public function SetBeaconAdvertisement(boolean $NewBeaconAdvertisementEnabled){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewBeaconAdvertisementEnabled'))$NewBeaconAdvertisementEnabled=null;
     $args=array('NewBeaconAdvertisementEnabled'=>$NewBeaconAdvertisementEnabled);
     return self::Call('WLANConfiguration','SetBeaconAdvertisement',$args,null);;
   }
   // NewBeaconType:string
   public function SetBeaconType(string $NewBeaconType){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewBeaconType'))$NewBeaconType=null;
     $args=array('NewBeaconType'=>$NewBeaconType);
     return self::Call('WLANConfiguration','SetBeaconType',$args,null);;
   }
   // NewChannel:ui1
   public function SetChannel(integer $NewChannel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewChannel'))$NewChannel=null;
     $args=array('NewChannel'=>$NewChannel);
     return self::Call('WLANConfiguration','SetChannel',$args,null);;
   }
   // NewMaxBitRate:string, NewChannel:ui1, NewSSID:string, NewBeaconType:string, NewMACAddressControlEnabled:boolean, NewBasicEncryptionModes:string, NewBasicAuthenticationMode:string
   public function SetConfigWLANConfiguration(string $NewMaxBitRate,integer $NewChannel,string $NewSSID,string $NewBeaconType,boolean $NewMACAddressControlEnabled,string $NewBasicEncryptionModes,string $NewBasicAuthenticationMode){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewMaxBitRate'))$NewMaxBitRate=null;
-    if(is_null('NewChannel'))$NewChannel=null;
-    if(is_null('NewSSID'))$NewSSID=null;
-    if(is_null('NewBeaconType'))$NewBeaconType=null;
-    if(is_null('NewMACAddressControlEnabled'))$NewMACAddressControlEnabled=null;
-    if(is_null('NewBasicEncryptionModes'))$NewBasicEncryptionModes=null;
-    if(is_null('NewBasicAuthenticationMode'))$NewBasicAuthenticationMode=null;
     $args=array('NewMaxBitRate'=>$NewMaxBitRate,'NewChannel'=>$NewChannel,'NewSSID'=>$NewSSID,'NewBeaconType'=>$NewBeaconType,'NewMACAddressControlEnabled'=>$NewMACAddressControlEnabled,'NewBasicEncryptionModes'=>$NewBasicEncryptionModes,'NewBasicAuthenticationMode'=>$NewBasicAuthenticationMode);
     return self::Call('WLANConfiguration','SetConfigWLANConfiguration',$args,null);;
   }
   // NewIndex:ui2, NewEnable:boolean, NewUrl:string, NewServiceId:string, NewUsername:string, NewPassword:string, NewName:string
   public function SetConfigByIndex(integer $NewIndex,boolean $NewEnable,string $NewUrl,string $NewServiceId,string $NewUsername,string $NewPassword,string $NewName){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIndex'))$NewIndex=null;
-    if(is_null('NewEnable'))$NewEnable=null;
-    if(is_null('NewUrl'))$NewUrl=null;
-    if(is_null('NewServiceId'))$NewServiceId=null;
-    if(is_null('NewUsername'))$NewUsername=null;
-    if(is_null('NewPassword'))$NewPassword=null;
-    if(is_null('NewName'))$NewName=null;
     $args=array('NewIndex'=>$NewIndex,'NewEnable'=>$NewEnable,'NewUrl'=>$NewUrl,'NewServiceId'=>$NewServiceId,'NewUsername'=>$NewUsername,'NewPassword'=>$NewPassword,'NewName'=>$NewName);
     return self::Call('X_AVM_DE_OnTel','SetConfigByIndex',$args,null);;
   }
   // NewPassword:string
   public function SetConfigPassword(string $NewPassword){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewPassword'))$NewPassword=null;
     $args=array('NewPassword'=>$NewPassword);
     return self::Call('LANConfigSecurity','SetConfigPassword',$args,null);;
   }
   // NewConnectionRequestUsername:string, NewConnectionRequestPassword:string
   public function SetConnectionRequestAuthentication(string $NewConnectionRequestUsername,string $NewConnectionRequestPassword){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewConnectionRequestUsername'))$NewConnectionRequestUsername=null;
-    if(is_null('NewConnectionRequestPassword'))$NewConnectionRequestPassword=null;
     $args=array('NewConnectionRequestUsername'=>$NewConnectionRequestUsername,'NewConnectionRequestPassword'=>$NewConnectionRequestPassword);
     return self::Call('ManagementServer','SetConnectionRequestAuthentication',$args,null);;
   }
   // NewEnabled:boolean, NewProviderName:string, NewUpdateURL:string, NewDomain:string, NewUsername:string, NewMode:string, NewServerIPv4:string, NewServerIPv6:string, NewPassword:string
   public function SetDDNSConfig(boolean $NewEnabled,string $NewProviderName,string $NewUpdateURL,string $NewDomain,string $NewUsername,string $NewMode,string $NewServerIPv4,string $NewServerIPv6,string $NewPassword){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewEnabled'))$NewEnabled=null;
-    if(is_null('NewProviderName'))$NewProviderName=null;
-    if(is_null('NewUpdateURL'))$NewUpdateURL=null;
-    if(is_null('NewDomain'))$NewDomain=null;
-    if(is_null('NewUsername'))$NewUsername=null;
-    if(is_null('NewMode'))$NewMode=null;
-    if(is_null('NewServerIPv4'))$NewServerIPv4=null;
-    if(is_null('NewServerIPv6'))$NewServerIPv6=null;
-    if(is_null('NewPassword'))$NewPassword=null;
     $args=array('NewEnabled'=>$NewEnabled,'NewProviderName'=>$NewProviderName,'NewUpdateURL'=>$NewUpdateURL,'NewDomain'=>$NewDomain,'NewUsername'=>$NewUsername,'NewMode'=>$NewMode,'NewServerIPv4'=>$NewServerIPv4,'NewServerIPv6'=>$NewServerIPv6,'NewPassword'=>$NewPassword);
     return self::Call('X_AVM_DE_RemoteAccess','SetDDNSConfig',$args,null);;
   }
   // NewDectID:ui2, NewPhonebookID:ui2
   public function SetDECTHandsetPhonebook(integer $NewDectID,integer $NewPhonebookID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewDectID'))$NewDectID=null;
-    if(is_null('NewPhonebookID'))$NewPhonebookID=null;
     $args=array('NewDectID'=>$NewDectID,'NewPhonebookID'=>$NewPhonebookID);
     return self::Call('X_AVM_DE_OnTel','SetDECTHandsetPhonebook',$args,null);;
   }
   // NewDHCPServerEnable:boolean
   public function SetDHCPServerEnable(boolean $NewDHCPServerEnable){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewDHCPServerEnable'))$NewDHCPServerEnable=null;
     $args=array('NewDHCPServerEnable'=>$NewDHCPServerEnable);
     return self::Call('LANHostConfigManagement','SetDHCPServerEnable',$args,null);;
   }
   // NewDefaultConnectionService:string
   public function SetDefaultConnectionService(string $NewDefaultConnectionService){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewDefaultConnectionService'))$NewDefaultConnectionService=null;
     $args=array('NewDefaultConnectionService'=>$NewDefaultConnectionService);
     return self::Call('Layer3Forwarding','SetDefaultConnectionService',$args,null);;
   }
   // NewDefaultWEPKeyIndex:ui1
   public function SetDefaultWEPKeyIndex(integer $NewDefaultWEPKeyIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewDefaultWEPKeyIndex'))$NewDefaultWEPKeyIndex=null;
     $args=array('NewDefaultWEPKeyIndex'=>$NewDefaultWEPKeyIndex);
     return self::Call('WLANConfiguration','SetDefaultWEPKeyIndex',$args,null);;
   }
   // NewEnable:boolean
   public function SetEnableLANEthernetInterfaceConfig(boolean $NewEnable){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewEnable'))$NewEnable=null;
     $args=array('NewEnable'=>$NewEnable);
     return self::Call('LANEthernetInterfaceConfig','SetEnableLANEthernetInterfaceConfig',$args,null);;
   }
   // NewIndex:ui2, NewEnable:boolean
   public function SetEnableByIndex(integer $NewIndex,boolean $NewEnable){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIndex'))$NewIndex=null;
-    if(is_null('NewEnable'))$NewEnable=null;
     $args=array('NewIndex'=>$NewIndex,'NewEnable'=>$NewEnable);
     return self::Call('X_AVM_DE_OnTel','SetEnableByIndex',$args,null);;
   }
   // NewFTPEnable:boolean
   public function SetFTPServer(boolean $NewFTPEnable){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewFTPEnable'))$NewFTPEnable=null;
     $args=array('NewFTPEnable'=>$NewFTPEnable);
     return self::Call('X_AVM_DE_Storage','SetFTPServer',$args,null);;
   }
   // NewDestIPAddress:string, NewDestSubnetMask:string, NewSourceIPAddress:string, NewSourceSubnetMask:string, NewEnable:boolean
   public function SetForwardingEntryEnable(string $NewDestIPAddress,string $NewDestSubnetMask,string $NewSourceIPAddress,string $NewSourceSubnetMask,boolean $NewEnable){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewDestIPAddress'))$NewDestIPAddress=null;
-    if(is_null('NewDestSubnetMask'))$NewDestSubnetMask=null;
-    if(is_null('NewSourceIPAddress'))$NewSourceIPAddress=null;
-    if(is_null('NewSourceSubnetMask'))$NewSourceSubnetMask=null;
-    if(is_null('NewEnable'))$NewEnable=null;
     $args=array('NewDestIPAddress'=>$NewDestIPAddress,'NewDestSubnetMask'=>$NewDestSubnetMask,'NewSourceIPAddress'=>$NewSourceIPAddress,'NewSourceSubnetMask'=>$NewSourceSubnetMask,'NewEnable'=>$NewEnable);
     return self::Call('Layer3Forwarding','SetForwardingEntryEnable',$args,null);;
   }
   // NewEnable:boolean, NewIPAddress:string, NewSubnetMask:string, NewIPAddressingType:string
   public function SetIPInterface(boolean $NewEnable,string $NewIPAddress,string $NewSubnetMask,string $NewIPAddressingType){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewEnable'))$NewEnable=null;
-    if(is_null('NewIPAddress'))$NewIPAddress=null;
-    if(is_null('NewSubnetMask'))$NewSubnetMask=null;
-    if(is_null('NewIPAddressingType'))$NewIPAddressingType=null;
     $args=array('NewEnable'=>$NewEnable,'NewIPAddress'=>$NewIPAddress,'NewSubnetMask'=>$NewSubnetMask,'NewIPAddressingType'=>$NewIPAddressingType);
     return self::Call('LANHostConfigManagement','SetIPInterface',$args,null);;
   }
   // NewIPRouters:string
   public function SetIPRouter(string $NewIPRouters){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIPRouters'))$NewIPRouters=null;
     $args=array('NewIPRouters'=>$NewIPRouters);
     return self::Call('LANHostConfigManagement','SetIPRouter',$args,null);;
   }
   // NewPassword:string
   public function SetManagementServerPassword(string $NewPassword){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewPassword'))$NewPassword=null;
     $args=array('NewPassword'=>$NewPassword);
     return self::Call('ManagementServer','SetManagementServerPassword',$args,null);;
   }
   // NewURL:string
   public function SetManagementServerURL(string $NewURL){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewURL'))$NewURL=null;
     $args=array('NewURL'=>$NewURL);
     return self::Call('ManagementServer','SetManagementServerURL',$args,null);;
   }
   // NewUsername:string
   public function SetManagementServerUsername(string $NewUsername){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewUsername'))$NewUsername=null;
     $args=array('NewUsername'=>$NewUsername);
     return self::Call('ManagementServer','SetManagementServerUsername',$args,null);;
   }
   // NewNTPServer1:string, NewNTPServer2:string
   public function SetNTPServers(string $NewNTPServer1,string $NewNTPServer2){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewNTPServer1'))$NewNTPServer1=null;
-    if(is_null('NewNTPServer2'))$NewNTPServer2=null;
     $args=array('NewNTPServer1'=>$NewNTPServer1,'NewNTPServer2'=>$NewNTPServer2);
     return self::Call('Time','SetNTPServers',$args,null);;
   }
   // NewPeriodicInformEnable:boolean, NewPeriodicInformInterval:ui4, NewPeriodicInformTime:dateTime
   public function SetPeriodicInform(boolean $NewPeriodicInformEnable,integer $NewPeriodicInformInterval,integer $NewPeriodicInformTime){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewPeriodicInformEnable'))$NewPeriodicInformEnable=null;
-    if(is_null('NewPeriodicInformInterval'))$NewPeriodicInformInterval=null;
-    if(is_null('NewPeriodicInformTime'))$NewPeriodicInformTime=null;
     $args=array('NewPeriodicInformEnable'=>$NewPeriodicInformEnable,'NewPeriodicInformInterval'=>$NewPeriodicInformInterval,'NewPeriodicInformTime'=>$NewPeriodicInformTime);
     return self::Call('ManagementServer','SetPeriodicInform',$args,null);;
   }
   // NewPersistentData:string
   public function SetPersistentData(string $NewPersistentData){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewPersistentData'))$NewPersistentData=null;
     $args=array('NewPersistentData'=>$NewPersistentData);
     return self::Call('DeviceConfig','SetPersistentData',$args,null);;
   }
   // NewPhonebookID:ui2, NewPhonebookEntryID:ui4, NewPhonebookEntryData:string
   public function SetPhonebookEntry(integer $NewPhonebookID,integer $NewPhonebookEntryID,string $NewPhonebookEntryData){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewPhonebookID'))$NewPhonebookID=null;
-    if(is_null('NewPhonebookEntryID'))$NewPhonebookEntryID=null;
-    if(is_null('NewPhonebookEntryData'))$NewPhonebookEntryData=null;
     $args=array('NewPhonebookID'=>$NewPhonebookID,'NewPhonebookEntryID'=>$NewPhonebookEntryID,'NewPhonebookEntryData'=>$NewPhonebookEntryData);
     return self::Call('X_AVM_DE_OnTel','SetPhonebookEntry',$args,null);;
   }
   // NewProvisioningCode:string
   public function SetProvisioningCode(string $NewProvisioningCode){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewProvisioningCode'))$NewProvisioningCode=null;
     $args=array('NewProvisioningCode'=>$NewProvisioningCode);
     return self::Call('DeviceInfo','SetProvisioningCode',$args,null);;
   }
   // NewSMBEnable:boolean
   public function SetSMBServer(boolean $NewSMBEnable){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewSMBEnable'))$NewSMBEnable=null;
     $args=array('NewSMBEnable'=>$NewSMBEnable);
     return self::Call('X_AVM_DE_Storage','SetSMBServer',$args,null);;
   }
   // NewSSID:string
   public function SetSSID(string $NewSSID){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewSSID'))$NewSSID=null;
     $args=array('NewSSID'=>$NewSSID);
     return self::Call('WLANConfiguration','SetSSID',$args,null);;
   }
   // NewWEPKey0:string, NewWEPKey1:string, NewWEPKey2:string, NewWEPKey3:string, NewPreSharedKey:string, NewKeyPassphrase:string
   public function SetSecurityKeys(string $NewWEPKey0,string $NewWEPKey1,string $NewWEPKey2,string $NewWEPKey3,string $NewPreSharedKey,string $NewKeyPassphrase){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewWEPKey0'))$NewWEPKey0=null;
-    if(is_null('NewWEPKey1'))$NewWEPKey1=null;
-    if(is_null('NewWEPKey2'))$NewWEPKey2=null;
-    if(is_null('NewWEPKey3'))$NewWEPKey3=null;
-    if(is_null('NewPreSharedKey'))$NewPreSharedKey=null;
-    if(is_null('NewKeyPassphrase'))$NewKeyPassphrase=null;
     $args=array('NewWEPKey0'=>$NewWEPKey0,'NewWEPKey1'=>$NewWEPKey1,'NewWEPKey2'=>$NewWEPKey2,'NewWEPKey3'=>$NewWEPKey3,'NewPreSharedKey'=>$NewPreSharedKey,'NewKeyPassphrase'=>$NewKeyPassphrase);
     return self::Call('WLANConfiguration','SetSecurityKeys',$args,null);;
   }
   // NewIndex:ui4, NewEnabled:boolean, NewName:string, NewScheme:string, NewPort:ui4, NewURLPath:string, NewType:string, NewIPv4Address:string, NewIPv6Address:string, NewIPv6InterfaceID:string, NewMACAddress:string, NewHostName:string
   public function SetServiceByIndex(integer $NewIndex,boolean $NewEnabled,string $NewName,string $NewScheme,integer $NewPort,string $NewURLPath,string $NewType,string $NewIPv4Address,string $NewIPv6Address,string $NewIPv6InterfaceID,string $NewMACAddress,string $NewHostName){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIndex'))$NewIndex=null;
-    if(is_null('NewEnabled'))$NewEnabled=null;
-    if(is_null('NewName'))$NewName=null;
-    if(is_null('NewScheme'))$NewScheme=null;
-    if(is_null('NewPort'))$NewPort=null;
-    if(is_null('NewURLPath'))$NewURLPath=null;
-    if(is_null('NewType'))$NewType=null;
-    if(is_null('NewIPv4Address'))$NewIPv4Address=null;
-    if(is_null('NewIPv6Address'))$NewIPv6Address=null;
-    if(is_null('NewIPv6InterfaceID'))$NewIPv6InterfaceID=null;
-    if(is_null('NewMACAddress'))$NewMACAddress=null;
-    if(is_null('NewHostName'))$NewHostName=null;
     $args=array('NewIndex'=>$NewIndex,'NewEnabled'=>$NewEnabled,'NewName'=>$NewName,'NewScheme'=>$NewScheme,'NewPort'=>$NewPort,'NewURLPath'=>$NewURLPath,'NewType'=>$NewType,'NewIPv4Address'=>$NewIPv4Address,'NewIPv6Address'=>$NewIPv6Address,'NewIPv6InterfaceID'=>$NewIPv6InterfaceID,'NewMACAddress'=>$NewMACAddress,'NewHostName'=>$NewHostName);
     return self::Call('X_AVM_DE_MyFritz','SetServiceByIndex',$args,null);;
   }
   // NewSubnetMask:string
   public function SetSubnetMask(string $NewSubnetMask){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewSubnetMask'))$NewSubnetMask=null;
     $args=array('NewSubnetMask'=>$NewSubnetMask);
     return self::Call('LANHostConfigManagement','SetSubnetMask',$args,null);;
   }
   // NewUpgradesManaged:boolean
   public function SetUpgradeManagement(boolean $NewUpgradesManaged){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewUpgradesManaged'))$NewUpgradesManaged=null;
     $args=array('NewUpgradesManaged'=>$NewUpgradesManaged);
     return self::Call('ManagementServer','SetUpgradeManagement',$args,null);;
   }
   // NewEnable:boolean, NewPassword:string, NewX_AVM_DE_NetworkAccessReadOnly:boolean
   public function SetUserConfig(boolean $NewEnable,string $NewPassword,boolean $NewX_AVM_DE_NetworkAccessReadOnly){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewEnable'))$NewEnable=null;
-    if(is_null('NewPassword'))$NewPassword=null;
-    if(is_null('NewX_AVM_DE_NetworkAccessReadOnly'))$NewX_AVM_DE_NetworkAccessReadOnly=null;
     $args=array('NewEnable'=>$NewEnable,'NewPassword'=>$NewPassword,'NewX_AVM-DE_NetworkAccessReadOnly'=>$NewX_AVM_DE_NetworkAccessReadOnly);
     return self::Call('X_AVM_DE_Storage','SetUserConfig',$args,null);;
   }
   // NewVoIPAreaCode:string
   public function SetVoIPCommonAreaCode(string $NewVoIPAreaCode){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewVoIPAreaCode'))$NewVoIPAreaCode=null;
     $args=array('NewVoIPAreaCode'=>$NewVoIPAreaCode);
     return self::Call('X_VoIP','SetVoIPCommonAreaCode',$args,null);;
   }
   // NewVoIPCountryCode:string
   public function SetVoIPCommonCountryCode(string $NewVoIPCountryCode){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewVoIPCountryCode'))$NewVoIPCountryCode=null;
     $args=array('NewVoIPCountryCode'=>$NewVoIPCountryCode);
     return self::Call('X_VoIP','SetVoIPCommonCountryCode',$args,null);;
   }
   // NewVoIPAccountIndex:ui2, NewVoIPEnableAreaCode:boolean
   public function SetVoIPEnableAreaCode(integer $NewVoIPAccountIndex,boolean $NewVoIPEnableAreaCode){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewVoIPAccountIndex'))$NewVoIPAccountIndex=null;
-    if(is_null('NewVoIPEnableAreaCode'))$NewVoIPEnableAreaCode=null;
     $args=array('NewVoIPAccountIndex'=>$NewVoIPAccountIndex,'NewVoIPEnableAreaCode'=>$NewVoIPEnableAreaCode);
     return self::Call('X_VoIP','SetVoIPEnableAreaCode',$args,null);;
   }
   // NewVoIPAccountIndex:ui2, NewVoIPEnableCountryCode:boolean
   public function SetVoIPEnableCountryCode(integer $NewVoIPAccountIndex,boolean $NewVoIPEnableCountryCode){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewVoIPAccountIndex'))$NewVoIPAccountIndex=null;
-    if(is_null('NewVoIPEnableCountryCode'))$NewVoIPEnableCountryCode=null;
     $args=array('NewVoIPAccountIndex'=>$NewVoIPAccountIndex,'NewVoIPEnableCountryCode'=>$NewVoIPEnableCountryCode);
     return self::Call('X_VoIP','SetVoIPEnableCountryCode',$args,null);;
   }
   // NewVoIPAccountIndex:ui2, NewVoIPRegistrar:string, NewVoIPNumber:string, NewVoIPUsername:string, NewVoIPPassword:string, NewVoIPOutboundProxy:string, NewVoIPSTUNServer:string
   public function X_AVM_DE_AddVoIPAccount(integer $NewVoIPAccountIndex,string $NewVoIPRegistrar,string $NewVoIPNumber,string $NewVoIPUsername,string $NewVoIPPassword,string $NewVoIPOutboundProxy,string $NewVoIPSTUNServer){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewVoIPAccountIndex'))$NewVoIPAccountIndex=null;
-    if(is_null('NewVoIPRegistrar'))$NewVoIPRegistrar=null;
-    if(is_null('NewVoIPNumber'))$NewVoIPNumber=null;
-    if(is_null('NewVoIPUsername'))$NewVoIPUsername=null;
-    if(is_null('NewVoIPPassword'))$NewVoIPPassword=null;
-    if(is_null('NewVoIPOutboundProxy'))$NewVoIPOutboundProxy=null;
-    if(is_null('NewVoIPSTUNServer'))$NewVoIPSTUNServer=null;
     $args=array('NewVoIPAccountIndex'=>$NewVoIPAccountIndex,'NewVoIPRegistrar'=>$NewVoIPRegistrar,'NewVoIPNumber'=>$NewVoIPNumber,'NewVoIPUsername'=>$NewVoIPUsername,'NewVoIPPassword'=>$NewVoIPPassword,'NewVoIPOutboundProxy'=>$NewVoIPOutboundProxy,'NewVoIPSTUNServer'=>$NewVoIPSTUNServer);
     return self::Call('X_VoIP','X_AVM_DE_AddVoIPAccount',$args,null);;
   }
   // NewX_AVM_DE_LaborVersion:string
   public function X_AVM_DE_CheckUpdate(string $NewX_AVM_DE_LaborVersion){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_LaborVersion'))$NewX_AVM_DE_LaborVersion=null;
     $args=array('NewX_AVM-DE_LaborVersion'=>$NewX_AVM_DE_LaborVersion);
     return self::Call('UserInterface','X_AVM_DE_CheckUpdate',$args,null);;
   }
@@ -895,14 +748,12 @@ class rpc2fritzbox extends uRpcBase {
   // NewVoIPAccountIndex:ui2
   public function X_AVM_DE_DelVoIPAccount(integer $NewVoIPAccountIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewVoIPAccountIndex'))$NewVoIPAccountIndex=null;
     $args=array('NewVoIPAccountIndex'=>$NewVoIPAccountIndex);
     return self::Call('X_VoIP','X_AVM_DE_DelVoIPAccount',$args,null);;
   }
   // NewX_AVM_DE_ClientIndex:ui2
   public function X_AVM_DE_DeleteClient(integer $NewX_AVM_DE_ClientIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_ClientIndex'))$NewX_AVM_DE_ClientIndex=null;
     $args=array('NewX_AVM-DE_ClientIndex'=>$NewX_AVM_DE_ClientIndex);
     return self::Call('X_VoIP','X_AVM_DE_DeleteClient',$args,null);;
   }
@@ -920,22 +771,18 @@ class rpc2fritzbox extends uRpcBase {
   // NewX_AVM_DE_PhoneNumber:string
   public function X_AVM_DE_DialNumber(string $NewX_AVM_DE_PhoneNumber){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_PhoneNumber'))$NewX_AVM_DE_PhoneNumber=null;
     $args=array('NewX_AVM-DE_PhoneNumber'=>$NewX_AVM_DE_PhoneNumber);
     return self::Call('X_VoIP','X_AVM_DE_DialNumber',$args,null);;
   }
   // NewX_AVM_DE_PhoneName:string
   public function X_AVM_DE_DialSetConfig(string $NewX_AVM_DE_PhoneName){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_PhoneName'))$NewX_AVM_DE_PhoneName=null;
     $args=array('NewX_AVM-DE_PhoneName'=>$NewX_AVM_DE_PhoneName);
     return self::Call('X_VoIP','X_AVM_DE_DialSetConfig',$args,null);;
   }
   // NewX_AVM_DE_AllowDowngrade:boolean, NewX_AVM_DE_DownloadURL:string
   public function X_AVM_DE_DoManualUpdate(boolean $NewX_AVM_DE_AllowDowngrade,string $NewX_AVM_DE_DownloadURL){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_AllowDowngrade'))$NewX_AVM_DE_AllowDowngrade=null;
-    if(is_null('NewX_AVM_DE_DownloadURL'))$NewX_AVM_DE_DownloadURL=null;
     $args=array('NewX_AVM-DE_AllowDowngrade'=>$NewX_AVM_DE_AllowDowngrade,'NewX_AVM-DE_DownloadURL'=>$NewX_AVM_DE_DownloadURL);
     return self::Call('UserInterface','X_AVM_DE_DoManualUpdate',$args,null);;
   }
@@ -960,7 +807,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewMACAddress:string
   public function X_AVM_DE_GetAutoWakeOnLANByMACAddress(string $NewMACAddress){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewMACAddress'))$NewMACAddress=null;
     $args=array('NewMACAddress'=>$NewMACAddress);
     $filter=array('NewAutoWOLEnabled');
     return self::Call('Hosts','X_AVM_DE_GetAutoWakeOnLANByMACAddress',$args,$filter);;
@@ -974,7 +820,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewX_AVM_DE_ClientIndex:ui2
   public function X_AVM_DE_GetClient(integer $NewX_AVM_DE_ClientIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_ClientIndex'))$NewX_AVM_DE_ClientIndex=null;
     $args=array('NewX_AVM-DE_ClientIndex'=>$NewX_AVM_DE_ClientIndex);
     $filter=array('NewX_AVM-DE_ClientUsername','NewX_AVM-DE_ClientRegistrar','NewX_AVM-DE_PhoneName','NewX_AVM-DE_OutGoingNumber');
     return self::Call('X_VoIP','X_AVM_DE_GetClient',$args,$filter);;
@@ -982,7 +827,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewX_AVM_DE_ClientIndex:ui2
   public function X_AVM_DE_GetClient2(integer $NewX_AVM_DE_ClientIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_ClientIndex'))$NewX_AVM_DE_ClientIndex=null;
     $args=array('NewX_AVM-DE_ClientIndex'=>$NewX_AVM_DE_ClientIndex);
     $filter=array('NewX_AVM-DE_ClientUsername','NewX_AVM-DE_ClientRegistrar','NewX_AVM-DE_PhoneName','NewX_AVM-DE_ClientId','NewX_AVM-DE_OutGoingNumber');
     return self::Call('X_VoIP','X_AVM_DE_GetClient2',$args,$filter);;
@@ -990,7 +834,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewX_AVM_DE_ClientIndex:ui2
   public function X_AVM_DE_GetClient3(integer $NewX_AVM_DE_ClientIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_ClientIndex'))$NewX_AVM_DE_ClientIndex=null;
     $args=array('NewX_AVM-DE_ClientIndex'=>$NewX_AVM_DE_ClientIndex);
     $filter=array('NewX_AVM-DE_ClientUsername','NewX_AVM-DE_ClientRegistrar','NewX_AVM-DE_PhoneName','NewX_AVM-DE_ClientId','NewX_AVM-DE_OutGoingNumber','NewX_AVM-DE_InComingNumbers','NewX_AVM-DE_ExternalRegistration');
     return self::Call('X_VoIP','X_AVM_DE_GetClient3',$args,$filter);;
@@ -1004,7 +847,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewX_AVM_DE_Password:string
   public function X_AVM_DE_GetConfigFile(string $NewX_AVM_DE_Password){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_Password'))$NewX_AVM_DE_Password=null;
     $args=array('NewX_AVM-DE_Password'=>$NewX_AVM_DE_Password);
     $filter=array('NewX_AVM-DE_ConfigFileUrl');
     return self::Call('DeviceConfig','X_AVM_DE_GetConfigFile',$args,$filter);;
@@ -1054,7 +896,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewSyncGroupIndex:ui4
   public function X_AVM_DE_GetOnlineMonitor(integer $NewSyncGroupIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewSyncGroupIndex'))$NewSyncGroupIndex=null;
     $args=array('NewSyncGroupIndex'=>$NewSyncGroupIndex);
     $filter=array('NewTotalNumberSyncGroups','NewSyncGroupName','NewSyncGroupMode','Newmax_ds','Newmax_us','Newds_current_bps','Newmc_current_bps','Newus_current_bps','Newprio_realtime_bps','Newprio_high_bps','Newprio_default_bps','Newprio_low_bps');
     return self::Call('WANCommonInterfaceConfig','X_AVM_DE_GetOnlineMonitor',$args,$filter);;
@@ -1062,7 +903,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewIndex:ui2
   public function X_AVM_DE_GetPhonePort(integer $NewIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewIndex'))$NewIndex=null;
     $args=array('NewIndex'=>$NewIndex);
     $filter=array('NewX_AVM-DE_PhoneName');
     return self::Call('X_VoIP','X_AVM_DE_GetPhonePort',$args,$filter);;
@@ -1076,7 +916,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewVoIPAccountIndex:ui2
   public function X_AVM_DE_GetVoIPAccount(integer $NewVoIPAccountIndex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewVoIPAccountIndex'))$NewVoIPAccountIndex=null;
     $args=array('NewVoIPAccountIndex'=>$NewVoIPAccountIndex);
     $filter=array('NewVoIPRegistrar','NewVoIPNumber','NewVoIPUsername','NewVoIPPassword','NewVoIPOutboundProxy','NewVoIPSTUNServer');
     return self::Call('X_VoIP','X_AVM_DE_GetVoIPAccount',$args,$filter);;
@@ -1102,118 +941,78 @@ class rpc2fritzbox extends uRpcBase {
   // NewMACAddress:string, NewAutoWOLEnabled:boolean
   public function X_AVM_DE_SetAutoWakeOnLANByMACAddress(string $NewMACAddress,boolean $NewAutoWOLEnabled){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewMACAddress'))$NewMACAddress=null;
-    if(is_null('NewAutoWOLEnabled'))$NewAutoWOLEnabled=null;
     $args=array('NewMACAddress'=>$NewMACAddress,'NewAutoWOLEnabled'=>$NewAutoWOLEnabled);
     return self::Call('Hosts','X_AVM_DE_SetAutoWakeOnLANByMACAddress',$args,null);;
   }
   // NewX_AVM_DE_ClientIndex:ui2, NewX_AVM_DE_ClientPassword:string, NewX_AVM_DE_PhoneName:string, NewX_AVM_DE_OutGoingNumber:string
   public function X_AVM_DE_SetClient(integer $NewX_AVM_DE_ClientIndex,string $NewX_AVM_DE_ClientPassword,string $NewX_AVM_DE_PhoneName,string $NewX_AVM_DE_OutGoingNumber){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_ClientIndex'))$NewX_AVM_DE_ClientIndex=null;
-    if(is_null('NewX_AVM_DE_ClientPassword'))$NewX_AVM_DE_ClientPassword=null;
-    if(is_null('NewX_AVM_DE_PhoneName'))$NewX_AVM_DE_PhoneName=null;
-    if(is_null('NewX_AVM_DE_OutGoingNumber'))$NewX_AVM_DE_OutGoingNumber=null;
     $args=array('NewX_AVM-DE_ClientIndex'=>$NewX_AVM_DE_ClientIndex,'NewX_AVM-DE_ClientPassword'=>$NewX_AVM_DE_ClientPassword,'NewX_AVM-DE_PhoneName'=>$NewX_AVM_DE_PhoneName,'NewX_AVM-DE_OutGoingNumber'=>$NewX_AVM_DE_OutGoingNumber);
     return self::Call('X_VoIP','X_AVM_DE_SetClient',$args,null);;
   }
   // NewX_AVM_DE_ClientIndex:ui2, NewX_AVM_DE_ClientPassword:string, NewX_AVM_DE_ClientId:string, NewX_AVM_DE_PhoneName:string, NewX_AVM_DE_OutGoingNumber:string
   public function X_AVM_DE_SetClient2(integer $NewX_AVM_DE_ClientIndex,string $NewX_AVM_DE_ClientPassword,string $NewX_AVM_DE_ClientId,string $NewX_AVM_DE_PhoneName,string $NewX_AVM_DE_OutGoingNumber){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_ClientIndex'))$NewX_AVM_DE_ClientIndex=null;
-    if(is_null('NewX_AVM_DE_ClientPassword'))$NewX_AVM_DE_ClientPassword=null;
-    if(is_null('NewX_AVM_DE_ClientId'))$NewX_AVM_DE_ClientId=null;
-    if(is_null('NewX_AVM_DE_PhoneName'))$NewX_AVM_DE_PhoneName=null;
-    if(is_null('NewX_AVM_DE_OutGoingNumber'))$NewX_AVM_DE_OutGoingNumber=null;
     $args=array('NewX_AVM-DE_ClientIndex'=>$NewX_AVM_DE_ClientIndex,'NewX_AVM-DE_ClientPassword'=>$NewX_AVM_DE_ClientPassword,'NewX_AVM-DE_ClientId'=>$NewX_AVM_DE_ClientId,'NewX_AVM-DE_PhoneName'=>$NewX_AVM_DE_PhoneName,'NewX_AVM-DE_OutGoingNumber'=>$NewX_AVM_DE_OutGoingNumber);
     return self::Call('X_VoIP','X_AVM_DE_SetClient2',$args,null);;
   }
   // NewX_AVM_DE_ClientIndex:ui2, NewX_AVM_DE_ClientPassword:string, NewX_AVM_DE_ClientId:string, NewX_AVM_DE_PhoneName:string, NewX_AVM_DE_OutGoingNumber:string, NewX_AVM_DE_InComingNumbers:string, NewX_AVM_DE_ExternalRegistration:boolean
   public function X_AVM_DE_SetClient3(integer $NewX_AVM_DE_ClientIndex,string $NewX_AVM_DE_ClientPassword,string $NewX_AVM_DE_ClientId,string $NewX_AVM_DE_PhoneName,string $NewX_AVM_DE_OutGoingNumber,string $NewX_AVM_DE_InComingNumbers,boolean $NewX_AVM_DE_ExternalRegistration){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_ClientIndex'))$NewX_AVM_DE_ClientIndex=null;
-    if(is_null('NewX_AVM_DE_ClientPassword'))$NewX_AVM_DE_ClientPassword=null;
-    if(is_null('NewX_AVM_DE_ClientId'))$NewX_AVM_DE_ClientId=null;
-    if(is_null('NewX_AVM_DE_PhoneName'))$NewX_AVM_DE_PhoneName=null;
-    if(is_null('NewX_AVM_DE_OutGoingNumber'))$NewX_AVM_DE_OutGoingNumber=null;
-    if(is_null('NewX_AVM_DE_InComingNumbers'))$NewX_AVM_DE_InComingNumbers=null;
-    if(is_null('NewX_AVM_DE_ExternalRegistration'))$NewX_AVM_DE_ExternalRegistration=null;
     $args=array('NewX_AVM-DE_ClientIndex'=>$NewX_AVM_DE_ClientIndex,'NewX_AVM-DE_ClientPassword'=>$NewX_AVM_DE_ClientPassword,'NewX_AVM-DE_ClientId'=>$NewX_AVM_DE_ClientId,'NewX_AVM-DE_PhoneName'=>$NewX_AVM_DE_PhoneName,'NewX_AVM-DE_OutGoingNumber'=>$NewX_AVM_DE_OutGoingNumber,'NewX_AVM-DE_InComingNumbers'=>$NewX_AVM_DE_InComingNumbers,'NewX_AVM-DE_ExternalRegistration'=>$NewX_AVM_DE_ExternalRegistration);
     return self::Call('X_VoIP','X_AVM_DE_SetClient3',$args,null);;
   }
   // NewX_AVM_DE_Password:string, NewX_AVM_DE_ConfigFileUrl:string
   public function X_AVM_DE_SetConfigFile(string $NewX_AVM_DE_Password,string $NewX_AVM_DE_ConfigFileUrl){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_Password'))$NewX_AVM_DE_Password=null;
-    if(is_null('NewX_AVM_DE_ConfigFileUrl'))$NewX_AVM_DE_ConfigFileUrl=null;
     $args=array('NewX_AVM-DE_Password'=>$NewX_AVM_DE_Password,'NewX_AVM-DE_ConfigFileUrl'=>$NewX_AVM_DE_ConfigFileUrl);
     return self::Call('DeviceConfig','X_AVM_DE_SetConfigFile',$args,null);;
   }
   // NewMACAddress:string, NewHostName:string
   public function X_AVM_DE_SetHostNameByMACAddress(string $NewMACAddress,string $NewHostName){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewMACAddress'))$NewMACAddress=null;
-    if(is_null('NewHostName'))$NewHostName=null;
     $args=array('NewMACAddress'=>$NewMACAddress,'NewHostName'=>$NewHostName);
     return self::Call('Hosts','X_AVM_DE_SetHostNameByMACAddress',$args,null);;
   }
   // NewX_AVM_DE_IPTVoptimize:boolean
   public function X_AVM_DE_SetIPTVOptimized(boolean $NewX_AVM_DE_IPTVoptimize){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_IPTVoptimize'))$NewX_AVM_DE_IPTVoptimize=null;
     $args=array('NewX_AVM-DE_IPTVoptimize'=>$NewX_AVM_DE_IPTVoptimize);
     return self::Call('WLANConfiguration','X_AVM_DE_SetIPTVOptimized',$args,null);;
   }
   // NewX_AVM_DE_Language:string, NewX_AVM_DE_Country:string, NewX_AVM_DE_Annex:string
   public function X_AVM_DE_SetInternationalConfig(string $NewX_AVM_DE_Language,string $NewX_AVM_DE_Country,string $NewX_AVM_DE_Annex){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_Language'))$NewX_AVM_DE_Language=null;
-    if(is_null('NewX_AVM_DE_Country'))$NewX_AVM_DE_Country=null;
-    if(is_null('NewX_AVM_DE_Annex'))$NewX_AVM_DE_Annex=null;
     $args=array('NewX_AVM-DE_Language'=>$NewX_AVM_DE_Language,'NewX_AVM-DE_Country'=>$NewX_AVM_DE_Country,'NewX_AVM-DE_Annex'=>$NewX_AVM_DE_Annex);
     return self::Call('UserInterface','X_AVM_DE_SetInternationalConfig',$args,null);;
   }
   // NewStickSurfEnable:boolean
   public function X_AVM_DE_SetStickSurfEnable(boolean $NewStickSurfEnable){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewStickSurfEnable'))$NewStickSurfEnable=null;
     $args=array('NewStickSurfEnable'=>$NewStickSurfEnable);
     return self::Call('WLANConfiguration','X_AVM_DE_SetStickSurfEnable',$args,null);;
   }
   // NewTR069FirmwareDownloadEnabled:boolean
   public function X_AVM_DE_SetTR069FirmwareDownloadEnabled(boolean $NewTR069FirmwareDownloadEnabled){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewTR069FirmwareDownloadEnabled'))$NewTR069FirmwareDownloadEnabled=null;
     $args=array('NewTR069FirmwareDownloadEnabled'=>$NewTR069FirmwareDownloadEnabled);
     return self::Call('ManagementServer','X_AVM_DE_SetTR069FirmwareDownloadEnabled',$args,null);;
   }
   // NewAccessType:string
   public function X_AVM_DE_SetWANAccessType(string $NewAccessType){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewAccessType'))$NewAccessType=null;
     $args=array('NewAccessType'=>$NewAccessType);
     return self::Call('WANCommonInterfaceConfig','X_AVM_DE_SetWANAccessType',$args,null);;
   }
   // NewEnable:boolean, NewBeaconType:string, NewKeyPassphrase:string, NewSSID:string, NewBSSID:string, NewTrafficMode:string, NewManualSpeed:boolean, NewMaxSpeedDS:ui4, NewMaxSpeedUS:ui4
   public function X_AVM_DE_SetWLANHybridMode(boolean $NewEnable,string $NewBeaconType,string $NewKeyPassphrase,string $NewSSID,string $NewBSSID,string $NewTrafficMode,boolean $NewManualSpeed,integer $NewMaxSpeedDS,integer $NewMaxSpeedUS){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewEnable'))$NewEnable=null;
-    if(is_null('NewBeaconType'))$NewBeaconType=null;
-    if(is_null('NewKeyPassphrase'))$NewKeyPassphrase=null;
-    if(is_null('NewSSID'))$NewSSID=null;
-    if(is_null('NewBSSID'))$NewBSSID=null;
-    if(is_null('NewTrafficMode'))$NewTrafficMode=null;
-    if(is_null('NewManualSpeed'))$NewManualSpeed=null;
-    if(is_null('NewMaxSpeedDS'))$NewMaxSpeedDS=null;
-    if(is_null('NewMaxSpeedUS'))$NewMaxSpeedUS=null;
     $args=array('NewEnable'=>$NewEnable,'NewBeaconType'=>$NewBeaconType,'NewKeyPassphrase'=>$NewKeyPassphrase,'NewSSID'=>$NewSSID,'NewBSSID'=>$NewBSSID,'NewTrafficMode'=>$NewTrafficMode,'NewManualSpeed'=>$NewManualSpeed,'NewMaxSpeedDS'=>$NewMaxSpeedDS,'NewMaxSpeedUS'=>$NewMaxSpeedUS);
     return self::Call('WLANConfiguration','X_AVM_DE_SetWLANHybridMode',$args,null);;
   }
   // NewX_AVM_DE_WPSMode:string, NewX_AVM_DE_WPSClientPIN:string
   public function X_AVM_DE_SetWPSConfig(string $NewX_AVM_DE_WPSMode,string $NewX_AVM_DE_WPSClientPIN){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewX_AVM_DE_WPSMode'))$NewX_AVM_DE_WPSMode=null;
-    if(is_null('NewX_AVM_DE_WPSClientPIN'))$NewX_AVM_DE_WPSClientPIN=null;
     $args=array('NewX_AVM-DE_WPSMode'=>$NewX_AVM_DE_WPSMode,'NewX_AVM-DE_WPSClientPIN'=>$NewX_AVM_DE_WPSClientPIN);
     $filter=array('NewX_AVM-DE_WPSAPPIN','NewX_AVM-DE_WPSStatus');
     return self::Call('WLANConfiguration','X_AVM_DE_SetWPSConfig',$args,$filter);;
@@ -1221,7 +1020,6 @@ class rpc2fritzbox extends uRpcBase {
   // NewMACAddress:string
   public function X_AVM_DE_WakeOnLANByMACAddress(string $NewMACAddress){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewMACAddress'))$NewMACAddress=null;
     $args=array('NewMACAddress'=>$NewMACAddress);
     return self::Call('Hosts','X_AVM_DE_WakeOnLANByMACAddress',$args,null);;
   }
@@ -1234,14 +1032,12 @@ class rpc2fritzbox extends uRpcBase {
   // NewEnableHighFrequency:boolean
   public function X_SetHighFrequencyBand(boolean $NewEnableHighFrequency){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewEnableHighFrequency'))$NewEnableHighFrequency=null;
     $args=array('NewEnableHighFrequency'=>$NewEnableHighFrequency);
     return self::Call('WLANConfiguration','X_SetHighFrequencyBand',$args,null);;
   }
   // NewTR069Enabled:boolean
   public function X_SetTR069Enable(boolean $NewTR069Enabled){
     if (!$this->GetOnlineState()) return null;
-    if(is_null('NewTR069Enabled'))$NewTR069Enabled=null;
     $args=array('NewTR069Enabled'=>$NewTR069Enabled);
     return self::Call('ManagementServer','X_SetTR069Enable',$args,null);;
   }

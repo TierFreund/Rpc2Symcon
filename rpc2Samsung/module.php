@@ -2,7 +2,7 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  |  Class           :rpc2Samsung extends uRpcBase                                 |
  |  Version         :2.2                                                          |
- |  BuildDate       :Tue 19.01.2016 01:31:09                                      |
+ |  BuildDate       :Tue 19.01.2016 01:42:03                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control Samsung TV DMR                        |

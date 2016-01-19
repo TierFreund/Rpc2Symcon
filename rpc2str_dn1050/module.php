@@ -2,7 +2,7 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  |  Class           :rpc2str_dn1050 extends uRpcBase                              |
  |  Version         :2.2                                                          |
- |  BuildDate       :Tue 19.01.2016 01:04:26                                      |
+ |  BuildDate       :Tue 19.01.2016 01:13:33                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control MULTI CHANNEL AV RECEIVER             |
@@ -167,7 +167,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetCurrentTransportActions(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('Actions');
     return self::Call('AVTransport','GetCurrentTransportActions',$args,$filter);;
@@ -184,7 +184,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetDeviceCapabilities(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('PlayMedia','RecMedia','RecQualityModes');
     return self::Call('AVTransport','GetDeviceCapabilities',$args,$filter);;
@@ -207,7 +207,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetMediaInfo(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('NrTracks','MediaDuration','CurrentURI','CurrentURIMetaData','NextURI','NextURIMetaData','PlayMedium','RecordMedium','WriteStatus');
     return self::Call('AVTransport','GetMediaInfo',$args,$filter);;
@@ -223,8 +223,8 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetMute(integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentMute');
     $CurrentMute=self::Call('RenderingControl','GetMute',$args,$filter);;
@@ -248,7 +248,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetPositionInfo(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('Track','TrackDuration','TrackMetaData','TrackURI','RelTime','AbsTime','RelCount','AbsCount');
     return self::Call('AVTransport','GetPositionInfo',$args,$filter);;
@@ -315,7 +315,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetTransportInfo(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentTransportState','CurrentTransportStatus','CurrentSpeed');
     return self::Call('AVTransport','GetTransportInfo',$args,$filter);;
@@ -331,7 +331,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetTransportSettings(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('PlayMode','RecQualityMode');
     return self::Call('AVTransport','GetTransportSettings',$args,$filter);;
@@ -347,8 +347,8 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function GetVolume(integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentVolume');
     $CurrentVolume=self::Call('RenderingControl','GetVolume',$args,$filter);;
@@ -365,7 +365,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function ListPresets(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentPresetNameList');
     return self::Call('RenderingControl','ListPresets',$args,$filter);;
@@ -379,7 +379,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function Next(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','Next',$args,null);;
   }
@@ -392,7 +392,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function Pause(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','Pause',$args,null);;
   }
@@ -406,8 +406,8 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function Play(integer $Instance,integer $Speed){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Speed))$Speed=1;
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Speed))$Speed=1;
     $args=array('InstanceID'=>$Instance,'Speed'=>$Speed);
     return self::Call('AVTransport','Play',$args,null);;
   }
@@ -420,7 +420,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function Previous(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','Previous',$args,null);;
   }
@@ -435,8 +435,8 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function Seek(string $Target,integer $Instance,string $Unit){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Unit))$Unit='TRACK_NR';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Unit))$Unit='TRACK_NR';
     $args=array('InstanceID'=>$Instance,'Unit'=>$Unit,'Target'=>$Target);
     return self::Call('AVTransport','Seek',$args,null);;
   }
@@ -450,8 +450,8 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SelectPreset(integer $Instance,string $PresetName){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($PresetName))$PresetName='FactoryDefaults';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($PresetName))$PresetName='FactoryDefaults';
     $args=array('InstanceID'=>$Instance,'PresetName'=>$PresetName);
     return self::Call('RenderingControl','SelectPreset',$args,null);;
   }
@@ -466,7 +466,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetAVTransportURI(string $CurrentURI,string $CurrentURIMetaData,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'CurrentURI'=>$CurrentURI,'CurrentURIMetaData'=>$CurrentURIMetaData);
     return self::Call('AVTransport','SetAVTransportURI',$args,null);;
   }
@@ -481,8 +481,8 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetMute(boolean $DesiredMute,integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'DesiredMute'=>$DesiredMute);
     $this->SetValueBoolean('Mute',$DesiredMute);
     return self::Call('RenderingControl','SetMute',$args,null);;
@@ -498,7 +498,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetNextAVTransportURI(string $NextURI,string $NextURIMetaData,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'NextURI'=>$NextURI,'NextURIMetaData'=>$NextURIMetaData);
     return self::Call('AVTransport','SetNextAVTransportURI',$args,null);;
   }
@@ -512,7 +512,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetPlayMode(string $NewPlayMode,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'NewPlayMode'=>$NewPlayMode);
     return self::Call('AVTransport','SetPlayMode',$args,null);;
   }
@@ -571,8 +571,8 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function SetVolume(integer $DesiredVolume,integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'DesiredVolume'=>$DesiredVolume);
     $this->SetValueInteger('Volume',$DesiredVolume);
     return self::Call('RenderingControl','SetVolume',$args,null);;
@@ -586,7 +586,7 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function Stop(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','Stop',$args,null);;
   }

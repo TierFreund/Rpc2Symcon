@@ -2,7 +2,7 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  |  Class           :rpc2sonos extends uRpcBase                                   |
  |  Version         :2.2                                                          |
- |  BuildDate       :Tue 19.01.2016 01:04:26                                      |
+ |  BuildDate       :Tue 19.01.2016 01:13:33                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control Sonos PLAY:3                          |
@@ -168,7 +168,7 @@ class rpc2sonos extends uRpcBase {
   // UpdateID:ui4, NumberOfURIs:ui4, EnqueuedURIs:string, EnqueuedURIsMetaData:string, ContainerURI:string, ContainerMetaData:string, DesiredFirstTrackNumberEnqueued:ui4, EnqueueAsNext:boolean, Instance:ui4
   public function AddMultipleURIsToQueue(integer $UpdateID,integer $NumberOfURIs,string $EnqueuedURIs,string $EnqueuedURIsMetaData,string $ContainerURI,string $ContainerMetaData,integer $DesiredFirstTrackNumberEnqueued,boolean $EnqueueAsNext,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'UpdateID'=>$UpdateID,'NumberOfURIs'=>$NumberOfURIs,'EnqueuedURIs'=>$EnqueuedURIs,'EnqueuedURIsMetaData'=>$EnqueuedURIsMetaData,'ContainerURI'=>$ContainerURI,'ContainerMetaData'=>$ContainerMetaData,'DesiredFirstTrackNumberEnqueued'=>$DesiredFirstTrackNumberEnqueued,'EnqueueAsNext'=>$EnqueueAsNext);
     $filter=array('FirstTrackNumberEnqueued','NumTracksAdded','NewQueueLength','NewUpdateID');
     return self::Call('AVTransport','AddMultipleURIsToQueue',$args,$filter);;
@@ -190,7 +190,7 @@ class rpc2sonos extends uRpcBase {
   // EnqueuedURI:string, EnqueuedURIMetaData:string, DesiredFirstTrackNumberEnqueued:ui4, EnqueueAsNext:boolean, Instance:ui4
   public function AddURIToQueue(string $EnqueuedURI,string $EnqueuedURIMetaData,integer $DesiredFirstTrackNumberEnqueued,boolean $EnqueueAsNext,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'EnqueuedURI'=>$EnqueuedURI,'EnqueuedURIMetaData'=>$EnqueuedURIMetaData,'DesiredFirstTrackNumberEnqueued'=>$DesiredFirstTrackNumberEnqueued,'EnqueueAsNext'=>$EnqueueAsNext);
     $filter=array('FirstTrackNumberEnqueued','NumTracksAdded','NewQueueLength');
     return self::Call('AVTransport','AddURIToQueue',$args,$filter);;
@@ -198,7 +198,7 @@ class rpc2sonos extends uRpcBase {
   // ObjectID:string, UpdateID:ui4, EnqueuedURI:string, EnqueuedURIMetaData:string, AddAtIndex:ui4, Instance:ui4
   public function AddURIToSavedQueue(string $ObjectID,integer $UpdateID,string $EnqueuedURI,string $EnqueuedURIMetaData,integer $AddAtIndex,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'ObjectID'=>$ObjectID,'UpdateID'=>$UpdateID,'EnqueuedURI'=>$EnqueuedURI,'EnqueuedURIMetaData'=>$EnqueuedURIMetaData,'AddAtIndex'=>$AddAtIndex);
     $filter=array('NumTracksAdded','NewQueueLength','NewUpdateID');
     return self::Call('AVTransport','AddURIToSavedQueue',$args,$filter);;
@@ -218,28 +218,28 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function BackupQueue(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','BackupQueue',$args,null);;
   }
   // Instance:ui4
   public function BecomeCoordinatorOfStandaloneGroup(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','BecomeCoordinatorOfStandaloneGroup',$args,null);;
   }
   // CurrentCoordinator:string, CurrentGroupID:string, OtherMembers:string, TransportSettings:string, CurrentURI:string, CurrentURIMetaData:string, SleepTimerState:string, AlarmState:string, StreamRestartState:string, CurrentQueueTrackList:string, Instance:ui4
   public function BecomeGroupCoordinator(string $CurrentCoordinator,string $CurrentGroupID,string $OtherMembers,string $TransportSettings,string $CurrentURI,string $CurrentURIMetaData,string $SleepTimerState,string $AlarmState,string $StreamRestartState,string $CurrentQueueTrackList,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'CurrentCoordinator'=>$CurrentCoordinator,'CurrentGroupID'=>$CurrentGroupID,'OtherMembers'=>$OtherMembers,'TransportSettings'=>$TransportSettings,'CurrentURI'=>$CurrentURI,'CurrentURIMetaData'=>$CurrentURIMetaData,'SleepTimerState'=>$SleepTimerState,'AlarmState'=>$AlarmState,'StreamRestartState'=>$StreamRestartState,'CurrentQueueTrackList'=>$CurrentQueueTrackList);
     return self::Call('AVTransport','BecomeGroupCoordinator',$args,null);;
   }
   // CurrentCoordinator:string, CurrentGroupID:string, OtherMembers:string, CurrentURI:string, CurrentURIMetaData:string, SleepTimerState:string, AlarmState:string, StreamRestartState:string, CurrentAVTTrackList:string, CurrentQueueTrackList:string, CurrentSourceState:string, ResumePlayback:boolean, Instance:ui4
   public function BecomeGroupCoordinatorAndSource(string $CurrentCoordinator,string $CurrentGroupID,string $OtherMembers,string $CurrentURI,string $CurrentURIMetaData,string $SleepTimerState,string $AlarmState,string $StreamRestartState,string $CurrentAVTTrackList,string $CurrentQueueTrackList,string $CurrentSourceState,boolean $ResumePlayback,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'CurrentCoordinator'=>$CurrentCoordinator,'CurrentGroupID'=>$CurrentGroupID,'OtherMembers'=>$OtherMembers,'CurrentURI'=>$CurrentURI,'CurrentURIMetaData'=>$CurrentURIMetaData,'SleepTimerState'=>$SleepTimerState,'AlarmState'=>$AlarmState,'StreamRestartState'=>$StreamRestartState,'CurrentAVTTrackList'=>$CurrentAVTTrackList,'CurrentQueueTrackList'=>$CurrentQueueTrackList,'CurrentSourceState'=>$CurrentSourceState,'ResumePlayback'=>$ResumePlayback);
     return self::Call('AVTransport','BecomeGroupCoordinatorAndSource',$args,null);;
   }
@@ -266,14 +266,14 @@ class rpc2sonos extends uRpcBase {
   // CurrentCoordinator:string, NewCoordinator:string, NewTransportSettings:string, Instance:ui4
   public function ChangeCoordinator(string $CurrentCoordinator,string $NewCoordinator,string $NewTransportSettings,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'CurrentCoordinator'=>$CurrentCoordinator,'NewCoordinator'=>$NewCoordinator,'NewTransportSettings'=>$NewTransportSettings);
     return self::Call('AVTransport','ChangeCoordinator',$args,null);;
   }
   // NewTransportSettings:string, CurrentAVTransportURI:string, Instance:ui4
   public function ChangeTransportSettings(string $NewTransportSettings,string $CurrentAVTransportURI,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'NewTransportSettings'=>$NewTransportSettings,'CurrentAVTransportURI'=>$CurrentAVTransportURI);
     return self::Call('AVTransport','ChangeTransportSettings',$args,null);;
   }
@@ -287,7 +287,7 @@ class rpc2sonos extends uRpcBase {
   // NewSleepTimerDuration:string, Instance:ui4
   public function ConfigureSleepTimer(string $NewSleepTimerDuration,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'NewSleepTimerDuration'=>$NewSleepTimerDuration);
     return self::Call('AVTransport','ConfigureSleepTimer',$args,null);;
   }
@@ -315,7 +315,7 @@ class rpc2sonos extends uRpcBase {
   // Title:string, EnqueuedURI:string, EnqueuedURIMetaData:string, Instance:ui4
   public function CreateSavedQueue(string $Title,string $EnqueuedURI,string $EnqueuedURIMetaData,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'Title'=>$Title,'EnqueuedURI'=>$EnqueuedURI,'EnqueuedURIMetaData'=>$EnqueuedURIMetaData);
     $filter=array('NumTracksAdded','NewQueueLength','AssignedObjectID','NewUpdateID');
     return self::Call('AVTransport','CreateSavedQueue',$args,$filter);;
@@ -329,7 +329,7 @@ class rpc2sonos extends uRpcBase {
   // NewCoordinator:string, RejoinGroup:boolean, Instance:ui4
   public function DelegateGroupCoordinationTo(string $NewCoordinator,boolean $RejoinGroup,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'NewCoordinator'=>$NewCoordinator,'RejoinGroup'=>$RejoinGroup);
     return self::Call('AVTransport','DelegateGroupCoordinationTo',$args,null);;
   }
@@ -422,7 +422,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetBass(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentBass');
     $CurrentBass=self::Call('RenderingControl','GetBass',$args,$filter);;
@@ -444,7 +444,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetCrossfadeMode(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CrossfadeMode');
     $CrossfadeMode=self::Call('AVTransport','GetCrossfadeMode',$args,$filter);;
@@ -467,7 +467,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetCurrentTransportActions(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('Actions');
     return self::Call('AVTransport','GetCurrentTransportActions',$args,$filter);;
@@ -481,7 +481,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetDeviceCapabilities(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('PlayMedia','RecMedia','RecQualityModes');
     return self::Call('AVTransport','GetDeviceCapabilities',$args,$filter);;
@@ -489,7 +489,7 @@ class rpc2sonos extends uRpcBase {
   // EQType:string, Instance:ui4
   public function GetEQ(string $EQType,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'EQType'=>$EQType);
     $filter=array('CurrentValue');
     $CurrentValue=self::Call('RenderingControl','GetEQ',$args,$filter);;
@@ -505,7 +505,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetGroupMute(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentMute');
     $CurrentMute=self::Call('GroupRenderingControl','GetGroupMute',$args,$filter);;
@@ -515,7 +515,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetGroupVolume(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentVolume');
     $CurrentVolume=self::Call('GroupRenderingControl','GetGroupVolume',$args,$filter);;
@@ -525,7 +525,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetHeadphoneConnected(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentHeadphoneConnected');
     return self::Call('RenderingControl','GetHeadphoneConnected',$args,$filter);;
@@ -558,8 +558,8 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4, Channel:string
   public function GetLoudness(integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentLoudness');
     $CurrentLoudness=self::Call('RenderingControl','GetLoudness',$args,$filter);;
@@ -569,7 +569,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetMediaInfo(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('NrTracks','MediaDuration','CurrentURI','CurrentURIMetaData','NextURI','NextURIMetaData','PlayMedium','RecordMedium','WriteStatus');
     return self::Call('AVTransport','GetMediaInfo',$args,$filter);;
@@ -577,8 +577,8 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4, Channel:string
   public function GetMute(integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentMute');
     $CurrentMute=self::Call('RenderingControl','GetMute',$args,$filter);;
@@ -588,7 +588,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetOutputFixed(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentFixed');
     $CurrentFixed=self::Call('RenderingControl','GetOutputFixed',$args,$filter);;
@@ -598,7 +598,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetPositionInfo(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('Track','TrackDuration','TrackMetaData','TrackURI','RelTime','AbsTime','RelCount','AbsCount');
     return self::Call('AVTransport','GetPositionInfo',$args,$filter);;
@@ -618,7 +618,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetRemainingSleepTimerDuration(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('RemainingSleepTimerDuration','CurrentSleepTimerGeneration');
     return self::Call('AVTransport','GetRemainingSleepTimerDuration',$args,$filter);;
@@ -631,7 +631,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetRunningAlarmProperties(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('AlarmID','GroupID','LoggedStartTime');
     return self::Call('AVTransport','GetRunningAlarmProperties',$args,$filter);;
@@ -663,7 +663,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetSonarStatus(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('SonarEnabled','SonarCalibrationAvailable');
     return self::Call('RenderingControl','GetSonarStatus',$args,$filter);;
@@ -690,7 +690,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetSupportsOutputFixed(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentSupportsFixed');
     return self::Call('RenderingControl','GetSupportsOutputFixed',$args,$filter);;
@@ -735,7 +735,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetTransportInfo(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentTransportState','CurrentTransportStatus','CurrentSpeed');
     return self::Call('AVTransport','GetTransportInfo',$args,$filter);;
@@ -743,7 +743,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetTransportSettings(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('PlayMode','RecQualityMode');
     return self::Call('AVTransport','GetTransportSettings',$args,$filter);;
@@ -751,7 +751,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function GetTreble(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('CurrentTreble');
     $CurrentTreble=self::Call('RenderingControl','GetTreble',$args,$filter);;
@@ -767,8 +767,8 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4, Channel:string
   public function GetVolume(integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentVolume');
     $CurrentVolume=self::Call('RenderingControl','GetVolume',$args,$filter);;
@@ -778,8 +778,8 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4, Channel:string
   public function GetVolumeDB(integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('CurrentVolume');
     $CurrentVolume=self::Call('RenderingControl','GetVolumeDB',$args,$filter);;
@@ -789,8 +789,8 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4, Channel:string
   public function GetVolumeDBRange(integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     $filter=array('MinValue','MaxValue');
     return self::Call('RenderingControl','GetVolumeDBRange',$args,$filter);;
@@ -853,43 +853,43 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function Next(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','Next',$args,null);;
   }
   // Instance:ui4
   public function NextProgrammedRadioTracks(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','NextProgrammedRadioTracks',$args,null);;
   }
   // DeletedURI:string, Instance:ui4
   public function NotifyDeletedURI(string $DeletedURI,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'DeletedURI'=>$DeletedURI);
     return self::Call('AVTransport','NotifyDeletedURI',$args,null);;
   }
   // Instance:ui4
   public function Pause(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','Pause',$args,null);;
   }
   // Instance:ui4, Speed:ui4
   public function Play(integer $Instance,integer $Speed){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Speed))$Speed=1;
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Speed))$Speed=1;
     $args=array('InstanceID'=>$Instance,'Speed'=>$Speed);
     return self::Call('AVTransport','Play',$args,null);;
   }
   // Instance:ui4
   public function Previous(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','Previous',$args,null);;
   }
@@ -917,8 +917,8 @@ class rpc2sonos extends uRpcBase {
   // RampType:string, DesiredVolume:ui2, ResetVolumeAfter:boolean, ProgramURI:string, Instance:ui4, Channel:string
   public function RampToVolume(string $RampType,integer $DesiredVolume,boolean $ResetVolumeAfter,string $ProgramURI,integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'RampType'=>$RampType,'DesiredVolume'=>$DesiredVolume,'ResetVolumeAfter'=>$ResetVolumeAfter,'ProgramURI'=>$ProgramURI);
     $filter=array('RampTime');
     return self::Call('RenderingControl','RampToVolume',$args,$filter);;
@@ -963,7 +963,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function RemoveAllTracksFromQueue(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','RemoveAllTracksFromQueue',$args,null);;
   }
@@ -988,7 +988,7 @@ class rpc2sonos extends uRpcBase {
   // ObjectID:string, UpdateID:ui4, Instance:ui4
   public function RemoveTrackFromQueue(string $ObjectID,integer $UpdateID,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'ObjectID'=>$ObjectID,'UpdateID'=>$UpdateID);
     return self::Call('AVTransport','RemoveTrackFromQueue',$args,null);;
   }
@@ -1002,7 +1002,7 @@ class rpc2sonos extends uRpcBase {
   // UpdateID:ui4, StartingIndex:ui4, NumberOfTracks:ui4, Instance:ui4
   public function RemoveTrackRangeFromQueue(integer $UpdateID,integer $StartingIndex,integer $NumberOfTracks,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'UpdateID'=>$UpdateID,'StartingIndex'=>$StartingIndex,'NumberOfTracks'=>$NumberOfTracks);
     $filter=array('NewUpdateID');
     return self::Call('AVTransport','RemoveTrackRangeFromQueue',$args,$filter);;
@@ -1017,14 +1017,14 @@ class rpc2sonos extends uRpcBase {
   // StartingIndex:ui4, NumberOfTracks:ui4, InsertBefore:ui4, UpdateID:ui4, Instance:ui4
   public function ReorderTracksInQueue(integer $StartingIndex,integer $NumberOfTracks,integer $InsertBefore,integer $UpdateID,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'StartingIndex'=>$StartingIndex,'NumberOfTracks'=>$NumberOfTracks,'InsertBefore'=>$InsertBefore,'UpdateID'=>$UpdateID);
     return self::Call('AVTransport','ReorderTracksInQueue',$args,null);;
   }
   // ObjectID:string, UpdateID:ui4, TrackList:string, NewPositionList:string, Instance:ui4
   public function ReorderTracksInSavedQueue(string $ObjectID,integer $UpdateID,string $TrackList,string $NewPositionList,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'ObjectID'=>$ObjectID,'UpdateID'=>$UpdateID,'TrackList'=>$TrackList,'NewPositionList'=>$NewPositionList);
     $filter=array('QueueLengthChange','NewQueueLength','NewUpdateID');
     return self::Call('AVTransport','ReorderTracksInSavedQueue',$args,$filter);;
@@ -1069,7 +1069,7 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function ResetBasicEQ(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     $filter=array('Bass','Treble','Loudness','LeftVolume','RightVolume');
     return self::Call('RenderingControl','ResetBasicEQ',$args,$filter);;
@@ -1077,7 +1077,7 @@ class rpc2sonos extends uRpcBase {
   // EQType:string, Instance:ui4
   public function ResetExtEQ(string $EQType,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'EQType'=>$EQType);
     return self::Call('RenderingControl','ResetExtEQ',$args,null);;
   }
@@ -1089,15 +1089,15 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4, Channel:string
   public function RestoreVolumePriorToRamp(integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel);
     return self::Call('RenderingControl','RestoreVolumePriorToRamp',$args,null);;
   }
   // AlarmID:ui4, LoggedStartTime:string, Duration:string, ProgramURI:string, ProgramMetaData:string, PlayMode:string, Volume:ui2, IncludeLinkedZones:boolean, Instance:ui4
   public function RunAlarm(integer $AlarmID,string $LoggedStartTime,string $Duration,string $ProgramURI,string $ProgramMetaData,string $PlayMode,integer $Volume,boolean $IncludeLinkedZones,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'AlarmID'=>$AlarmID,'LoggedStartTime'=>$LoggedStartTime,'Duration'=>$Duration,'ProgramURI'=>$ProgramURI,'ProgramMetaData'=>$ProgramMetaData,'PlayMode'=>$PlayMode,'Volume'=>$Volume,'IncludeLinkedZones'=>$IncludeLinkedZones);
     return self::Call('AVTransport','RunAlarm',$args,null);;
   }
@@ -1111,7 +1111,7 @@ class rpc2sonos extends uRpcBase {
   // Title:string, ObjectID:string, Instance:ui4
   public function SaveQueue(string $Title,string $ObjectID,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'Title'=>$Title,'ObjectID'=>$ObjectID);
     $filter=array('AssignedObjectID');
     return self::Call('AVTransport','SaveQueue',$args,$filter);;
@@ -1119,8 +1119,8 @@ class rpc2sonos extends uRpcBase {
   // Target:string, Instance:ui4, Unit:string
   public function Seek(string $Target,integer $Instance,string $Unit){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Unit))$Unit='TRACK_NR';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Unit))$Unit='TRACK_NR';
     $args=array('InstanceID'=>$Instance,'Unit'=>$Unit,'Target'=>$Target);
     return self::Call('AVTransport','Seek',$args,null);;
   }
@@ -1133,7 +1133,7 @@ class rpc2sonos extends uRpcBase {
   // CurrentURI:string, CurrentURIMetaData:string, Instance:ui4
   public function SetAVTransportURI(string $CurrentURI,string $CurrentURIMetaData,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'CurrentURI'=>$CurrentURI,'CurrentURIMetaData'=>$CurrentURIMetaData);
     return self::Call('AVTransport','SetAVTransportURI',$args,null);;
   }
@@ -1164,7 +1164,7 @@ class rpc2sonos extends uRpcBase {
   // DesiredBass:i2, Instance:ui4
   public function SetBass(integer $DesiredBass,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'DesiredBass'=>$DesiredBass);
     $this->SetValueInteger('Bass',$DesiredBass);
     return self::Call('RenderingControl','SetBass',$args,null);;
@@ -1178,14 +1178,14 @@ class rpc2sonos extends uRpcBase {
   // ChannelMap:string, Instance:ui4
   public function SetChannelMap(string $ChannelMap,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'ChannelMap'=>$ChannelMap);
     return self::Call('RenderingControl','SetChannelMap',$args,null);;
   }
   // CrossfadeMode:boolean, Instance:ui4
   public function SetCrossfadeMode(boolean $CrossfadeMode,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'CrossfadeMode'=>$CrossfadeMode);
     $this->SetValueBoolean('CrossfadeMode',$CrossfadeMode);
     return self::Call('AVTransport','SetCrossfadeMode',$args,null);;
@@ -1199,7 +1199,7 @@ class rpc2sonos extends uRpcBase {
   // EQType:string, DesiredValue:i2, Instance:ui4
   public function SetEQ(string $EQType,integer $DesiredValue,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'EQType'=>$EQType,'DesiredValue'=>$DesiredValue);
     $this->SetValueString('EQ',$EQType);
     return self::Call('RenderingControl','SetEQ',$args,null);;
@@ -1213,7 +1213,7 @@ class rpc2sonos extends uRpcBase {
   // DesiredMute:boolean, Instance:ui4
   public function SetGroupMute(boolean $DesiredMute,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'DesiredMute'=>$DesiredMute);
     $this->SetValueBoolean('GroupMute',$DesiredMute);
     return self::Call('GroupRenderingControl','SetGroupMute',$args,null);;
@@ -1221,7 +1221,7 @@ class rpc2sonos extends uRpcBase {
   // DesiredVolume:ui2, Instance:ui4
   public function SetGroupVolume(integer $DesiredVolume,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'DesiredVolume'=>$DesiredVolume);
     $this->SetValueInteger('GroupVolume',$DesiredVolume);
     return self::Call('GroupRenderingControl','SetGroupVolume',$args,null);;
@@ -1235,8 +1235,8 @@ class rpc2sonos extends uRpcBase {
   // DesiredLoudness:boolean, Instance:ui4, Channel:string
   public function SetLoudness(boolean $DesiredLoudness,integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'DesiredLoudness'=>$DesiredLoudness);
     $this->SetValueBoolean('Loudness',$DesiredLoudness);
     return self::Call('RenderingControl','SetLoudness',$args,null);;
@@ -1244,8 +1244,8 @@ class rpc2sonos extends uRpcBase {
   // DesiredMute:boolean, Instance:ui4, Channel:string
   public function SetMute(boolean $DesiredMute,integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'DesiredMute'=>$DesiredMute);
     $this->SetValueBoolean('Mute',$DesiredMute);
     return self::Call('RenderingControl','SetMute',$args,null);;
@@ -1253,14 +1253,14 @@ class rpc2sonos extends uRpcBase {
   // NextURI:string, NextURIMetaData:string, Instance:ui4
   public function SetNextAVTransportURI(string $NextURI,string $NextURIMetaData,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'NextURI'=>$NextURI,'NextURIMetaData'=>$NextURIMetaData);
     return self::Call('AVTransport','SetNextAVTransportURI',$args,null);;
   }
   // DesiredFixed:boolean, Instance:ui4
   public function SetOutputFixed(boolean $DesiredFixed,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'DesiredFixed'=>$DesiredFixed);
     $this->SetValueBoolean('OutputFixed',$DesiredFixed);
     return self::Call('RenderingControl','SetOutputFixed',$args,null);;
@@ -1268,14 +1268,14 @@ class rpc2sonos extends uRpcBase {
   // NewPlayMode:string, Instance:ui4
   public function SetPlayMode(string $NewPlayMode,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'NewPlayMode'=>$NewPlayMode);
     return self::Call('AVTransport','SetPlayMode',$args,null);;
   }
   // Adjustment:i4, Instance:ui4
   public function SetRelativeGroupVolume(integer $Adjustment,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'Adjustment'=>$Adjustment);
     $filter=array('NewVolume');
     return self::Call('GroupRenderingControl','SetRelativeGroupVolume',$args,$filter);;
@@ -1283,8 +1283,8 @@ class rpc2sonos extends uRpcBase {
   // Adjustment:i4, Instance:ui4, Channel:string
   public function SetRelativeVolume(integer $Adjustment,integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'Adjustment'=>$Adjustment);
     $filter=array('NewVolume');
     return self::Call('RenderingControl','SetRelativeVolume',$args,$filter);;
@@ -1302,14 +1302,14 @@ class rpc2sonos extends uRpcBase {
   // CalibrationID:string, Coefficients:string, Instance:ui4
   public function SetSonarCalibrationX(string $CalibrationID,string $Coefficients,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'CalibrationID'=>$CalibrationID,'Coefficients'=>$Coefficients);
     return self::Call('RenderingControl','SetSonarCalibrationX',$args,null);;
   }
   // SonarEnabled:boolean, Instance:ui4
   public function SetSonarStatus(boolean $SonarEnabled,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'SonarEnabled'=>$SonarEnabled);
     return self::Call('RenderingControl','SetSonarStatus',$args,null);;
   }
@@ -1352,7 +1352,7 @@ class rpc2sonos extends uRpcBase {
   // DesiredTreble:i2, Instance:ui4
   public function SetTreble(integer $DesiredTreble,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'DesiredTreble'=>$DesiredTreble);
     $this->SetValueInteger('Treble',$DesiredTreble);
     return self::Call('RenderingControl','SetTreble',$args,null);;
@@ -1366,8 +1366,8 @@ class rpc2sonos extends uRpcBase {
   // DesiredVolume:ui2, Instance:ui4, Channel:string
   public function SetVolume(integer $DesiredVolume,integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'DesiredVolume'=>$DesiredVolume);
     $this->SetValueInteger('Volume',$DesiredVolume);
     return self::Call('RenderingControl','SetVolume',$args,null);;
@@ -1375,8 +1375,8 @@ class rpc2sonos extends uRpcBase {
   // DesiredVolume:i2, Instance:ui4, Channel:string
   public function SetVolumeDB(integer $DesiredVolume,integer $Instance,string $Channel){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
-    if(is_null($Channel))$Channel='Master';
+    if(!isset($Instance))$Instance=0;
+    if(!isset($Channel))$Channel='Master';
     $args=array('InstanceID'=>$Instance,'Channel'=>$Channel,'DesiredVolume'=>$DesiredVolume);
     $this->SetValueInteger('VolumeDB',$DesiredVolume);
     return self::Call('RenderingControl','SetVolumeDB',$args,null);;
@@ -1390,28 +1390,28 @@ class rpc2sonos extends uRpcBase {
   // Instance:ui4
   public function SnapshotGroupVolume(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('GroupRenderingControl','SnapshotGroupVolume',$args,null);;
   }
   // Duration:string, Instance:ui4
   public function SnoozeAlarm(string $Duration,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'Duration'=>$Duration);
     return self::Call('AVTransport','SnoozeAlarm',$args,null);;
   }
   // ProgramURI:string, ProgramMetaData:string, Volume:ui2, IncludeLinkedZones:boolean, ResetVolumeAfter:boolean, Instance:ui4
   public function StartAutoplay(string $ProgramURI,string $ProgramMetaData,integer $Volume,boolean $IncludeLinkedZones,boolean $ResetVolumeAfter,integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance,'ProgramURI'=>$ProgramURI,'ProgramMetaData'=>$ProgramMetaData,'Volume'=>$Volume,'IncludeLinkedZones'=>$IncludeLinkedZones,'ResetVolumeAfter'=>$ResetVolumeAfter);
     return self::Call('AVTransport','StartAutoplay',$args,null);;
   }
   // Instance:ui4
   public function Stop(integer $Instance){
     if (!$this->GetOnlineState()) return null;
-    if(is_null($Instance))$Instance=0;
+    if(!isset($Instance))$Instance=0;
     $args=array('InstanceID'=>$Instance);
     return self::Call('AVTransport','Stop',$args,null);;
   }

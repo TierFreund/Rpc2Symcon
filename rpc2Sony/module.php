@@ -1,8 +1,8 @@
 <?
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- |  Class           :rpc2str_dn1050 extends uRpcBase                              |
+ |  Class           :rpc2Sony extends uRpcBase                                    |
  |  Version         :2.2                                                          |
- |  BuildDate       :Tue 19.01.2016 01:13:33                                      |
+ |  BuildDate       :Tue 19.01.2016 01:31:09                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control MULTI CHANNEL AV RECEIVER             |
@@ -19,18 +19,18 @@
  |  UDN             :uuid:5f9ec1b3-ed59-1900-4530-d8d43cd2af47                    |
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-if (!DEFINED('RPC2STR_DN1050_STATE_STOP')) {
-  DEFINE('RPC2STR_DN1050_STATE_STOP',0);
-  DEFINE('RPC2STR_DN1050_STATE_PREV',1);
-  DEFINE('RPC2STR_DN1050_STATE_PLAY',2);
-  DEFINE('RPC2STR_DN1050_STATE_PAUSE',3);
-  DEFINE('RPC2STR_DN1050_STATE_NEXT',4);
-  DEFINE('RPC2STR_DN1050_STATE_TRANS',5);
-  DEFINE('RPC2STR_DN1050_STATE_ERROR',6);
+if (!DEFINED('RPC2SONY_STATE_STOP')) {
+  DEFINE('RPC2SONY_STATE_STOP',0);
+  DEFINE('RPC2SONY_STATE_PREV',1);
+  DEFINE('RPC2SONY_STATE_PLAY',2);
+  DEFINE('RPC2SONY_STATE_PAUSE',3);
+  DEFINE('RPC2SONY_STATE_NEXT',4);
+  DEFINE('RPC2SONY_STATE_TRANS',5);
+  DEFINE('RPC2SONY_STATE_ERROR',6);
 }
 require_once( __DIR__ . '/../uRpcBase.class.php');
 require_once( __DIR__ . '/../uRpcIo.class.php');
-class rpc2str_dn1050 extends uRpcBase {
+class rpc2Sony extends uRpcBase {
   protected $_boRepeat=false;
   protected $_boShuffle=false;
   /*--------------------------------------------------------------------------------+
@@ -63,7 +63,7 @@ class rpc2str_dn1050 extends uRpcBase {
     IPS_SetProperty ($this->InstanceID, 'ConnectionType','curl');
     IPS_SetProperty ($this->InstanceID, 'Timeout',2);
     $this->RegisterPropertyInteger('IntervallRefresh', 60);
-    $this->RegisterTimer('Refresh_All', 0, 'rpc2str_dn1050_Update($_IPS[\'TARGET\']);');
+    $this->RegisterTimer('Refresh_All', 0, 'rpc2Sony_Update($_IPS[\'TARGET\']);');
   }
   /*--------------------------------------------------------------------------------+
    |  Funktion: ApplyChanges                                                        |
@@ -73,13 +73,13 @@ class rpc2str_dn1050 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function ApplyChanges(){
     parent::ApplyChanges();
-    $this->RegisterProfileBooleanEx('rpc2str_dn1050.OnOff','Information','','',Array(Array(false,'Aus','',-1),Array(true,'Ein','',-1)));
-    $this->RegisterVariableBoolean('Mute','Mute','rpc2str_dn1050.OnOff');
+    $this->RegisterProfileBooleanEx('rpc2Sony.OnOff','Information','','',Array(Array(false,'Aus','',-1),Array(true,'Ein','',-1)));
+    $this->RegisterVariableBoolean('Mute','Mute','rpc2Sony.OnOff');
     $this->RegisterVariableInteger('Volume','Volume','~Intensity.100');
-    $this->RegisterProfileIntegerEx('rpc2str_dn1050.State','Status','','',array(Array(0,'Stop','', -1),Array(1,'Prev','', -1),Array(2,'Play','', -1),Array(3,'Pause','', -1),Array(4,'Next','', -1)));
-    $this->RegisterVariableInteger('State','State','rpc2str_dn1050.State');
-    $this->RegisterVariableBoolean('Repeat','Repeat','rpc2str_dn1050.OnOff');
-    $this->RegisterVariableBoolean('Shuffle','Shuffle','rpc2str_dn1050.OnOff');
+    $this->RegisterProfileIntegerEx('rpc2Sony.State','Status','','',array(Array(0,'Stop','', -1),Array(1,'Prev','', -1),Array(2,'Play','', -1),Array(3,'Pause','', -1),Array(4,'Next','', -1)));
+    $this->RegisterVariableInteger('State','State','rpc2Sony.State');
+    $this->RegisterVariableBoolean('Repeat','Repeat','rpc2Sony.OnOff');
+    $this->RegisterVariableBoolean('Shuffle','Shuffle','rpc2Sony.OnOff');
     foreach(array('Mute','Volume','State','Repeat','Shuffle') as $e)$this->EnableAction($e);
   }
   /*--------------------------------------------------------------------------------+
@@ -103,7 +103,7 @@ class rpc2str_dn1050 extends uRpcBase {
   public function Update(boolean $All){
     if($this->GetMute()==null)$this->SetValueBoolean('Mute',false);
     if($this->GetVolume()==null)$this->SetValueInteger('Volume',0);
-    if($this->GetState()==null)$this->SetValueInteger('State',RPC2STR_DN1050_STATE_STOP);
+    if($this->GetState()==null)$this->SetValueInteger('State',RPC2SONY_STATE_STOP);
     if($this->GetRepeat()==null)$this->SetValueBoolean('Repeat',false);
     if($this->GetShuffle()==null)$this->SetValueBoolean('Shuffle',false);
   }
@@ -296,12 +296,12 @@ class rpc2str_dn1050 extends uRpcBase {
    |    Instance     ( ui4 ) ( Vorgabe = 0 )                                        |
    |                                                                                |
    |  Liefert:                                                                      |
-   |    CurrentState ( ui2 ) [ RPC2STR_DN1050_STATE_STOP|RPC2STR_DN1050_STATE_PLAY|RPC2STR_DN1050_STATE_PAUSE|RPC2STR_DN1050_STATE_TRANS|RPC2STR_DN1050_STATE_ERROR ]|
+   |    CurrentState ( ui2 ) [ RPC2SONY_STATE_STOP|RPC2SONY_STATE_PLAY|RPC2SONY_STATE_PAUSE|RPC2SONY_STATE_TRANS|RPC2SONY_STATE_ERROR ]|
    +--------------------------------------------------------------------------------*/
   public function GetState($Instance=0){
-    $states=array('STOPPED'=>RPC2STR_DN1050_STATE_STOP,'PLAYING'=>RPC2STR_DN1050_STATE_PLAY,'PAUSED_PLAYBACK'=>RPC2STR_DN1050_STATE_PAUSE,'TRANSITIONING'=>RPC2STR_DN1050_STATE_TRANS,'NO_MEDIA_PRESENT'=>RPC2STR_DN1050_STATE_ERROR);
+    $states=array('STOPPED'=>RPC2SONY_STATE_STOP,'PLAYING'=>RPC2SONY_STATE_PLAY,'PAUSED_PLAYBACK'=>RPC2SONY_STATE_PAUSE,'TRANSITIONING'=>RPC2SONY_STATE_TRANS,'NO_MEDIA_PRESENT'=>RPC2SONY_STATE_ERROR);
     $v=self::GetTransportInfo($Instance);
-    return ($v&&($s=$v['CurrentTransportState'])&&isset($a[$s]))?$a[$s]:RPC2STR_DN1050_STATE_ERROR;
+    return ($v&&($s=$v['CurrentTransportState'])&&isset($a[$s]))?$a[$s]:RPC2SONY_STATE_ERROR;
   }
   /*--------------------------------------------------------------------------------+
    |  Funktion: GetTransportInfo                                                    |
@@ -543,20 +543,20 @@ class rpc2str_dn1050 extends uRpcBase {
   /*--------------------------------------------------------------------------------+
    |  Funktion: SetState                                                            |
    |  Erwartet:                                                                     |
-   |    NewState     ( ui2 ) [ RPC2STR_DN1050_STATE_STOP|RPC2STR_DN1050_STATE_PLAY|RPC2STR_DN1050_STATE_PAUSE|RPC2STR_DN1050_STATE_NEXT|RPC2STR_DN1050_STATE_PREV ]|
+   |    NewState     ( ui2 ) [ RPC2SONY_STATE_STOP|RPC2SONY_STATE_PLAY|RPC2SONY_STATE_PAUSE|RPC2SONY_STATE_NEXT|RPC2SONY_STATE_PREV ]|
    |    InstanceID   ( ui4 ) ( Vorgabe = 0 )                                        |
    |                                                                                |
    |  Liefert:                                                                      |
-   |    CurrentState ( ui2 ) [ RPC2STR_DN1050_STATE_STOP|RPC2STR_DN1050_STATE_PLAY|RPC2STR_DN1050_STATE_PAUSE|RPC2STR_DN1050_STATE_TRANS|RPC2STR_DN1050_STATE_ERROR ]|
+   |    CurrentState ( ui2 ) [ RPC2SONY_STATE_STOP|RPC2SONY_STATE_PLAY|RPC2SONY_STATE_PAUSE|RPC2SONY_STATE_TRANS|RPC2SONY_STATE_ERROR ]|
    +--------------------------------------------------------------------------------*/
   public function SetState($NewState, $InstanceID=0){
     switch($NewState){
-      case RPC2STR_DN1050_STATE_STOP : $s=$this->Stop($InstanceID)?RPC2STR_DN1050_STATE_STOP:RPC2STR_DN1050_STATE_ERROR; break;
-      case RPC2STR_DN1050_STATE_PREV : $s=$this->Previous($InstanceID)?RPC2STR_DN1050_STATE_PLAY:RPC2STR_DN1050_STATE_STOP;break;
-      case RPC2STR_DN1050_STATE_PLAY : $s=$this->Play($InstanceID)?RPC2STR_DN1050_STATE_PLAY:RPC2STR_DN1050_STATE_STOP; break;
-      case RPC2STR_DN1050_STATE_PAUSE: $s=$this->Pause($InstanceID)?RPC2STR_DN1050_STATE_PAUSE:RPC2STR_DN1050_STATE_STOP;break;
-      case RPC2STR_DN1050_STATE_NEXT : $s=$this->Next($InstanceID)?RPC2STR_DN1050_STATE_PLAY:RPC2STR_DN1050_STATE_STOP; break;
-      default : return RPC2STR_DN1050_STATE_ERROR;
+      case RPC2SONY_STATE_STOP : $s=$this->Stop($InstanceID)?RPC2SONY_STATE_STOP:RPC2SONY_STATE_ERROR; break;
+      case RPC2SONY_STATE_PREV : $s=$this->Previous($InstanceID)?RPC2SONY_STATE_PLAY:RPC2SONY_STATE_STOP;break;
+      case RPC2SONY_STATE_PLAY : $s=$this->Play($InstanceID)?RPC2SONY_STATE_PLAY:RPC2SONY_STATE_STOP; break;
+      case RPC2SONY_STATE_PAUSE: $s=$this->Pause($InstanceID)?RPC2SONY_STATE_PAUSE:RPC2SONY_STATE_STOP;break;
+      case RPC2SONY_STATE_NEXT : $s=$this->Next($InstanceID)?RPC2SONY_STATE_PLAY:RPC2SONY_STATE_STOP; break;
+      default : return RPC2SONY_STATE_ERROR;
     }
     return $s;
   }

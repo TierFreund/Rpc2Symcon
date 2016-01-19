@@ -1,11 +1,11 @@
 {
-  "id": "{ECEB8008-754E-3996-E418-E963B31AFC32}",
+  "id": "{52489ED4-5B24-D9A3-5409-235439DEB58E}",
   "name": "rpc2ue55f6400",
   "type": 3,
   "vendor": "",
-  "aliases": ["rpc2ue55f6400"],
+  "aliases": ["rpc2Samsung"],
   "parentRequirements": [],
   "childRequirements": [],
   "implemented": [],
-  "prefix": "rpc2ue55f6400"
+  "prefix": "rpc2Samsung"
 }

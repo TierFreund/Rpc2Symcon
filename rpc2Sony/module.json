@@ -1,11 +1,11 @@
 {
-  "id": "{2626AC0C-128F-981C-5BF2-CC1C4063D87C}",
+  "id": "{976767A6-34EC-2BCD-7B8A-17CD37C5F777}",
   "name": "rpc2str_dn1050",
   "type": 3,
   "vendor": "",
-  "aliases": ["rpc2str_dn1050"],
+  "aliases": ["rpc2Sony"],
   "parentRequirements": [],
   "childRequirements": [],
   "implemented": [],
-  "prefix": "rpc2str_dn1050"
+  "prefix": "rpc2Sony"
 }

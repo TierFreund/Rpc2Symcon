@@ -1,8 +1,8 @@
 <?
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- |  Class           :rpc2ue55f6400 extends uRpcBase                               |
+ |  Class           :rpc2Samsung extends uRpcBase                                 |
  |  Version         :2.2                                                          |
- |  BuildDate       :Tue 19.01.2016 01:13:33                                      |
+ |  BuildDate       :Tue 19.01.2016 01:31:09                                      |
  |  Publisher       :(c)2016 Xaver Bauer                                          |
  |  Contact         :xaver65@gmail.com                                            |
  |  Desc            :PHP Classes to Control Samsung TV DMR                        |
@@ -19,18 +19,18 @@
  |  UDN             :uuid:0ee6b280-00fa-1000-b849-0c891041f72d                    |
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-if (!DEFINED('RPC2UE55F6400_STATE_STOP')) {
-  DEFINE('RPC2UE55F6400_STATE_STOP',0);
-  DEFINE('RPC2UE55F6400_STATE_PREV',1);
-  DEFINE('RPC2UE55F6400_STATE_PLAY',2);
-  DEFINE('RPC2UE55F6400_STATE_PAUSE',3);
-  DEFINE('RPC2UE55F6400_STATE_NEXT',4);
-  DEFINE('RPC2UE55F6400_STATE_TRANS',5);
-  DEFINE('RPC2UE55F6400_STATE_ERROR',6);
+if (!DEFINED('RPC2SAMSUNG_STATE_STOP')) {
+  DEFINE('RPC2SAMSUNG_STATE_STOP',0);
+  DEFINE('RPC2SAMSUNG_STATE_PREV',1);
+  DEFINE('RPC2SAMSUNG_STATE_PLAY',2);
+  DEFINE('RPC2SAMSUNG_STATE_PAUSE',3);
+  DEFINE('RPC2SAMSUNG_STATE_NEXT',4);
+  DEFINE('RPC2SAMSUNG_STATE_TRANS',5);
+  DEFINE('RPC2SAMSUNG_STATE_ERROR',6);
 }
 require_once( __DIR__ . '/../uRpcBase.class.php');
 require_once( __DIR__ . '/../uRpcIo.class.php');
-class rpc2ue55f6400 extends uRpcBase {
+class rpc2Samsung extends uRpcBase {
   protected $_boRepeat=false;
   protected $_boShuffle=false;
   /*--------------------------------------------------------------------------------+
@@ -64,7 +64,7 @@ class rpc2ue55f6400 extends uRpcBase {
     IPS_SetProperty ($this->InstanceID, 'ConnectionType','curl');
     IPS_SetProperty ($this->InstanceID, 'Timeout',2);
     $this->RegisterPropertyInteger('IntervallRefresh', 60);
-    $this->RegisterTimer('Refresh_All', 0, 'rpc2ue55f6400_Update($_IPS[\'TARGET\']);');
+    $this->RegisterTimer('Refresh_All', 0, 'rpc2Samsung_Update($_IPS[\'TARGET\']);');
   }
   /*--------------------------------------------------------------------------------+
    |  Funktion: ApplyChanges                                                        |
@@ -74,16 +74,16 @@ class rpc2ue55f6400 extends uRpcBase {
    +--------------------------------------------------------------------------------*/
   public function ApplyChanges(){
     parent::ApplyChanges();
-    $this->RegisterProfileBooleanEx('rpc2ue55f6400.OnOff','Information','','',Array(Array(false,'Aus','',-1),Array(true,'Ein','',-1)));
-    $this->RegisterVariableBoolean('Mute','Mute','rpc2ue55f6400.OnOff');
+    $this->RegisterProfileBooleanEx('rpc2Samsung.OnOff','Information','','',Array(Array(false,'Aus','',-1),Array(true,'Ein','',-1)));
+    $this->RegisterVariableBoolean('Mute','Mute','rpc2Samsung.OnOff');
     $this->RegisterVariableInteger('Volume','Volume','~Intensity.100');
     $this->RegisterVariableInteger('Brightness','Brightness','~Intensity.100');
     $this->RegisterVariableInteger('Contrast','Contrast','~Intensity.100');
     $this->RegisterVariableInteger('Sharpness','Sharpness','~Intensity.100');
-    $this->RegisterProfileIntegerEx('rpc2ue55f6400.State','Status','','',array(Array(0,'Stop','', -1),Array(1,'Prev','', -1),Array(2,'Play','', -1),Array(3,'Pause','', -1),Array(4,'Next','', -1)));
-    $this->RegisterVariableInteger('State','State','rpc2ue55f6400.State');
-    $this->RegisterVariableBoolean('Repeat','Repeat','rpc2ue55f6400.OnOff');
-    $this->RegisterVariableBoolean('Shuffle','Shuffle','rpc2ue55f6400.OnOff');
+    $this->RegisterProfileIntegerEx('rpc2Samsung.State','Status','','',array(Array(0,'Stop','', -1),Array(1,'Prev','', -1),Array(2,'Play','', -1),Array(3,'Pause','', -1),Array(4,'Next','', -1)));
+    $this->RegisterVariableInteger('State','State','rpc2Samsung.State');
+    $this->RegisterVariableBoolean('Repeat','Repeat','rpc2Samsung.OnOff');
+    $this->RegisterVariableBoolean('Shuffle','Shuffle','rpc2Samsung.OnOff');
     foreach(array('Mute','Volume','Brightness','Contrast','Sharpness','State','Repeat','Shuffle') as $e)$this->EnableAction($e);
   }
   /*--------------------------------------------------------------------------------+
@@ -110,7 +110,7 @@ class rpc2ue55f6400 extends uRpcBase {
     if($this->GetBrightness()==null)$this->SetValueInteger('Brightness',0);
     if($this->GetContrast()==null)$this->SetValueInteger('Contrast',0);
     if($this->GetSharpness()==null)$this->SetValueInteger('Sharpness',0);
-    if($this->GetState()==null)$this->SetValueInteger('State',RPC2UE55F6400_STATE_STOP);
+    if($this->GetState()==null)$this->SetValueInteger('State',RPC2SAMSUNG_STATE_STOP);
     if($this->GetRepeat()==null)$this->SetValueBoolean('Repeat',false);
     if($this->GetShuffle()==null)$this->SetValueBoolean('Shuffle',false);
   }
@@ -970,12 +970,12 @@ class rpc2ue55f6400 extends uRpcBase {
    |    Instance     ( ui4 ) ( Vorgabe = 0 )                                        |
    |                                                                                |
    |  Liefert:                                                                      |
-   |    CurrentState ( ui2 ) [ RPC2UE55F6400_STATE_STOP|RPC2UE55F6400_STATE_PLAY|RPC2UE55F6400_STATE_PAUSE|RPC2UE55F6400_STATE_TRANS|RPC2UE55F6400_STATE_ERROR ]|
+   |    CurrentState ( ui2 ) [ RPC2SAMSUNG_STATE_STOP|RPC2SAMSUNG_STATE_PLAY|RPC2SAMSUNG_STATE_PAUSE|RPC2SAMSUNG_STATE_TRANS|RPC2SAMSUNG_STATE_ERROR ]|
    +--------------------------------------------------------------------------------*/
   public function GetState($Instance=0){
-    $states=array('STOPPED'=>RPC2UE55F6400_STATE_STOP,'PAUSED_PLAYBACK'=>RPC2UE55F6400_STATE_PAUSE,'PLAYING'=>RPC2UE55F6400_STATE_PLAY,'TRANSITIONING'=>RPC2UE55F6400_STATE_TRANS,'NO_MEDIA_PRESENT'=>RPC2UE55F6400_STATE_ERROR);
+    $states=array('STOPPED'=>RPC2SAMSUNG_STATE_STOP,'PAUSED_PLAYBACK'=>RPC2SAMSUNG_STATE_PAUSE,'PLAYING'=>RPC2SAMSUNG_STATE_PLAY,'TRANSITIONING'=>RPC2SAMSUNG_STATE_TRANS,'NO_MEDIA_PRESENT'=>RPC2SAMSUNG_STATE_ERROR);
     $v=self::GetTransportInfo($Instance);
-    return ($v&&($s=$v['CurrentTransportState'])&&isset($a[$s]))?$a[$s]:RPC2UE55F6400_STATE_ERROR;
+    return ($v&&($s=$v['CurrentTransportState'])&&isset($a[$s]))?$a[$s]:RPC2SAMSUNG_STATE_ERROR;
   }
   /*--------------------------------------------------------------------------------+
    |  Funktion: GetTransportInfo                                                    |
@@ -1554,20 +1554,20 @@ class rpc2ue55f6400 extends uRpcBase {
   /*--------------------------------------------------------------------------------+
    |  Funktion: SetState                                                            |
    |  Erwartet:                                                                     |
-   |    NewState     ( ui2 ) [ RPC2UE55F6400_STATE_STOP|RPC2UE55F6400_STATE_PLAY|RPC2UE55F6400_STATE_PAUSE|RPC2UE55F6400_STATE_NEXT|RPC2UE55F6400_STATE_PREV ]|
+   |    NewState     ( ui2 ) [ RPC2SAMSUNG_STATE_STOP|RPC2SAMSUNG_STATE_PLAY|RPC2SAMSUNG_STATE_PAUSE|RPC2SAMSUNG_STATE_NEXT|RPC2SAMSUNG_STATE_PREV ]|
    |    InstanceID   ( ui4 ) ( Vorgabe = 0 )                                        |
    |                                                                                |
    |  Liefert:                                                                      |
-   |    CurrentState ( ui2 ) [ RPC2UE55F6400_STATE_STOP|RPC2UE55F6400_STATE_PLAY|RPC2UE55F6400_STATE_PAUSE|RPC2UE55F6400_STATE_TRANS|RPC2UE55F6400_STATE_ERROR ]|
+   |    CurrentState ( ui2 ) [ RPC2SAMSUNG_STATE_STOP|RPC2SAMSUNG_STATE_PLAY|RPC2SAMSUNG_STATE_PAUSE|RPC2SAMSUNG_STATE_TRANS|RPC2SAMSUNG_STATE_ERROR ]|
    +--------------------------------------------------------------------------------*/
   public function SetState($NewState, $InstanceID=0){
     switch($NewState){
-      case RPC2UE55F6400_STATE_STOP : $s=$this->Stop($InstanceID)?RPC2UE55F6400_STATE_STOP:RPC2UE55F6400_STATE_ERROR; break;
-      case RPC2UE55F6400_STATE_PREV : $s=$this->Previous($InstanceID)?RPC2UE55F6400_STATE_PLAY:RPC2UE55F6400_STATE_STOP;break;
-      case RPC2UE55F6400_STATE_PLAY : $s=$this->Play($InstanceID)?RPC2UE55F6400_STATE_PLAY:RPC2UE55F6400_STATE_STOP; break;
-      case RPC2UE55F6400_STATE_PAUSE: $s=$this->Pause($InstanceID)?RPC2UE55F6400_STATE_PAUSE:RPC2UE55F6400_STATE_STOP;break;
-      case RPC2UE55F6400_STATE_NEXT : $s=$this->Next($InstanceID)?RPC2UE55F6400_STATE_PLAY:RPC2UE55F6400_STATE_STOP; break;
-      default : return RPC2UE55F6400_STATE_ERROR;
+      case RPC2SAMSUNG_STATE_STOP : $s=$this->Stop($InstanceID)?RPC2SAMSUNG_STATE_STOP:RPC2SAMSUNG_STATE_ERROR; break;
+      case RPC2SAMSUNG_STATE_PREV : $s=$this->Previous($InstanceID)?RPC2SAMSUNG_STATE_PLAY:RPC2SAMSUNG_STATE_STOP;break;
+      case RPC2SAMSUNG_STATE_PLAY : $s=$this->Play($InstanceID)?RPC2SAMSUNG_STATE_PLAY:RPC2SAMSUNG_STATE_STOP; break;
+      case RPC2SAMSUNG_STATE_PAUSE: $s=$this->Pause($InstanceID)?RPC2SAMSUNG_STATE_PAUSE:RPC2SAMSUNG_STATE_STOP;break;
+      case RPC2SAMSUNG_STATE_NEXT : $s=$this->Next($InstanceID)?RPC2SAMSUNG_STATE_PLAY:RPC2SAMSUNG_STATE_STOP; break;
+      default : return RPC2SAMSUNG_STATE_ERROR;
     }
     return $s;
   }
